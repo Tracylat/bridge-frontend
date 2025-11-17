@@ -195,38 +195,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Articles Section */}
-      <section className="py-20 bg-[#08227f]/90 backdrop-blur-sm text-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Derniers Articles</h2>
-          <p className="text-gray-200 max-w-2xl mx-auto mb-12">Restez informé avec nos analyses et perspectives</p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article) => (
-              <motion.article
-                key={article.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: article.id * 0.06 }}
-                className="bg-white/8 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10 text-left"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm text-gray-300">{article.date}</span>
-                  <span className="text-sm font-medium bg-white/10 px-3 py-1 rounded-full">{article.category}</span>
-                </div>
-
-                <h3 className="text-xl font-semibold mb-2">{article.title}</h3>
-                <p className="text-gray-300 mb-4">{article.excerpt}</p>
-
-                <Link to="/articles" className="inline-flex items-center text-[#82aaff] font-medium">
-                  Lire la suite <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="py-20 bg-gradient-to-r from-[#041a60] to-[#08227f] text-white text-center">
         <div className="max-w-4xl mx-auto px-6">

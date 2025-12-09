@@ -2,12 +2,13 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FileText, Globe, Users, Lightbulb, ArrowRight } from 'lucide-react';
+import Footer from '../components/Footer';
 
 // Slider images
 const sliderImages = [
-  '/images/slider1.jpg', // Exemple : image Bénin / culture / ville
-  '/images/slider2.jpg', // Exemple : image bureau / équipe
-  '/images/slider3.jpg', // Exemple : image diaspora / projet
+  'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop', // Équipe collaborant
+  'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop', // Bureau moderne
+  'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&h=600&fit=crop', // Réunion professionnelle
 ];
 
 const services = [
@@ -174,6 +175,7 @@ const Services = () => {
           <ArrowRight className="ml-2 h-5 w-5" />
         </Link>
       </section>
+      <Footer />
     </div>
   );
 };

@@ -1,27 +1,59 @@
 import { useState } from 'react';
-import { User, FileText, Settings, Bell, LogOut, TrendingUp, Calendar, Clock } from 'lucide-react';
+import { User, FileText, Settings, Bell, LogOut, TrendingUp, Calendar, Clock, CheckCircle, AlertCircle, Briefcase } from 'lucide-react';
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState('projects');
 
   const userStats = [
-    { label: 'Articles publiés', value: '12', change: '+2 ce mois', icon: <FileText className="h-5 w-5" /> },
-    { label: 'Vues totales', value: '3,847', change: '+15% ce mois', icon: <TrendingUp className="h-5 w-5" /> },
-    { label: 'Commentaires', value: '48', change: '+8 ce mois', icon: <User className="h-5 w-5" /> },
-    { label: 'Taux d\'engagement', value: '4.2%', change: '+0.5% ce mois', icon: <TrendingUp className="h-5 w-5" /> }
+    { label: 'Projets en cours', value: '3', change: '+1 ce mois', icon: <Briefcase className="h-5 w-5" /> },
+    { label: 'Projets complétés', value: '5', change: '+2 ce mois', icon: <CheckCircle className="h-5 w-5" /> },
+    { label: 'Tâches en attente', value: '8', change: '-2 ce mois', icon: <AlertCircle className="h-5 w-5" /> },
+    { label: 'Progression moyenne', value: '72%', change: '+15% ce mois', icon: <TrendingUp className="h-5 w-5" /> }
   ];
 
-  const recentArticles = [
-    { id: 1, title: 'Les nouvelles tendances du marché', date: '15 Oct 2025', status: 'Publié', views: 234 },
-    { id: 2, title: 'Innovation et technologie', date: '12 Oct 2025', status: 'Publié', views: 189 },
-    { id: 3, title: 'Perspectives futures', date: '08 Oct 2025', status: 'Brouillon', views: 0 },
-    { id: 4, title: 'Analyse comparative', date: '05 Oct 2025', status: 'Publié', views: 156 }
+  const clientProjects = [
+    { 
+      id: 1, 
+      name: 'Création Entreprise - SARL Tech', 
+      status: 'En cours', 
+      progress: 85, 
+      startDate: '15 Oct 2025',
+      dueDate: '30 Nov 2025',
+      manager: 'Alexandre Dubois'
+    },
+    { 
+      id: 2, 
+      name: 'Business Plan - Import/Export', 
+      status: 'En cours', 
+      progress: 60, 
+      startDate: '01 Nov 2025',
+      dueDate: '15 Dec 2025',
+      manager: 'Marie Laurent'
+    },
+    { 
+      id: 3, 
+      name: 'Domiciliation Entreprise', 
+      status: 'Complété', 
+      progress: 100, 
+      startDate: '20 Sep 2025',
+      dueDate: '10 Oct 2025',
+      manager: 'Sophie Martin'
+    },
+    { 
+      id: 4, 
+      name: 'Stratégie Marketing Digital', 
+      status: 'En attente', 
+      progress: 20, 
+      startDate: '05 Dec 2025',
+      dueDate: '20 Jan 2026',
+      manager: 'Thomas Bernard'
+    }
   ];
 
-  const notifications = [
-    { id: 1, message: 'Votre article a été approuvé', time: 'Il y a 2 heures', type: 'success' },
-    { id: 2, message: 'Nouveau commentaire sur votre article', time: 'Il y a 5 heures', type: 'info' },
-    { id: 3, message: 'Mise à jour des termes d\'utilisation', time: 'Hier', type: 'warning' }
+  const projectUpdates = [
+    { id: 1, message: 'Vos documents ont été validés par Bridge Partners', time: 'Il y a 2 heures', type: 'success', project: 'Création Entreprise' },
+    { id: 2, message: 'Nouvelle étape disponible : Formalités administratives', time: 'Il y a 5 heures', type: 'info', project: 'Business Plan' },
+    { id: 3, message: 'Rendez-vous de suivi prévu le 15 Dec à 10h', time: 'Hier', type: 'warning', project: 'Stratégie Marketing' }
   ];
 
   return (
@@ -29,8 +61,8 @@ const Dashboard = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Tableau de bord</h1>
-          <p className="text-gray-600 mt-2">Bienvenue sur votre espace personnel</p>
+          <h1 className="text-3xl font-bold text-gray-900">Mon Espace Client</h1>
+          <p className="text-gray-600 mt-2">Suivez la progression de vos projets avec Bridge Partners</p>
         </div>
 
         {/* Stats Grid */}
@@ -38,7 +70,7 @@ const Dashboard = () => {
           {userStats.map((stat, index) => (
             <div key={index} className="bg-white rounded-lg shadow-sm p-6">
               <div className="flex items-center justify-between mb-4">
-                <div className="text-gray-900">{stat.icon}</div>
+                <div className="text-[#08227f]">{stat.icon}</div>
                 <span className="text-sm text-green-600 font-medium">{stat.change}</span>
               </div>
               <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
@@ -50,19 +82,19 @@ const Dashboard = () => {
         {/* Navigation Tabs */}
         <div className="border-b border-gray-200 mb-8">
           <nav className="-mb-px flex space-x-8">
-            {['overview', 'articles', 'notifications', 'settings'].map((tab) => (
+            {['projects', 'updates', 'profile', 'settings'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`py-2 px-1 border-b-2 font-medium text-sm ${
                   activeTab === tab
-                    ? 'border-gray-900 text-gray-900'
+                    ? 'border-[#08227f] text-[#08227f]'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 }`}
               >
-                {tab === 'overview' && 'Aperçu'}
-                {tab === 'articles' && 'Mes articles'}
-                {tab === 'notifications' && 'Notifications'}
+                {tab === 'projects' && 'Mes Projets'}
+                {tab === 'updates' && 'Mises à jour'}
+                {tab === 'profile' && 'Mon Profil'}
                 {tab === 'settings' && 'Paramètres'}
               </button>
             ))}
@@ -71,154 +103,121 @@ const Dashboard = () => {
 
         {/* Tab Content */}
         <div className="bg-white rounded-lg shadow-sm">
-          {activeTab === 'overview' && (
+          {activeTab === 'projects' && (
             <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">Aperçu général</h2>
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">Mes Projets</h2>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Recent Articles */}
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Articles récents</h3>
-                  <div className="space-y-3">
-                    {recentArticles.map((article) => (
-                      <div key={article.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                        <div>
-                          <h4 className="font-medium text-gray-900">{article.title}</h4>
-                          <div className="flex items-center space-x-2 mt-1">
-                            <span className="text-sm text-gray-500">{article.date}</span>
-                            <span className="text-gray-300">•</span>
-                            <span className={`text-sm font-medium ${
-                              article.status === 'Publié' ? 'text-green-600' : 'text-yellow-600'
-                            }`}>
-                              {article.status}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-sm text-gray-600">{article.views} vues</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Quick Actions */}
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Actions rapides</h3>
-                  <div className="space-y-3">
-                    <button className="w-full text-left p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                      <div className="flex items-center">
-                        <FileText className="h-5 w-5 text-gray-600 mr-3" />
-                        <div>
-                          <div className="font-medium text-gray-900">Créer un nouvel article</div>
-                          <div className="text-sm text-gray-600">Rédiger et publier du contenu</div>
-                        </div>
-                      </div>
-                    </button>
-                    
-                    <button className="w-full text-left p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                      <div className="flex items-center">
-                        <User className="h-5 w-5 text-gray-600 mr-3" />
-                        <div>
-                          <div className="font-medium text-gray-900">Modifier mon profil</div>
-                          <div className="text-sm text-gray-600">Mettre à jour mes informations</div>
-                        </div>
-                      </div>
-                    </button>
-                    
-                    <button className="w-full text-left p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                      <div className="flex items-center">
-                        <Settings className="h-5 w-5 text-gray-600 mr-3" />
-                        <div>
-                          <div className="font-medium text-gray-900">Paramètres du compte</div>
-                          <div className="text-sm text-gray-600">Gérer les préférences</div>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'articles' && (
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-semibold text-gray-900">Mes articles</h2>
-                <button className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors">
-                  Nouvel article
-                </button>
-              </div>
-              
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Titre
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Date
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Statut
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Vues
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {recentArticles.map((article) => (
-                      <tr key={article.id}>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm font-medium text-gray-900">{article.title}</div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-500">{article.date}</div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                            article.status === 'Publié' 
-                              ? 'bg-green-100 text-green-800' 
-                              : 'bg-yellow-100 text-yellow-800'
-                          }`}>
-                            {article.status}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {article.views}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                          <button className="text-gray-900 hover:text-gray-700 mr-3">Modifier</button>
-                          <button className="text-red-600 hover:text-red-900">Supprimer</button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'notifications' && (
-            <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">Notifications</h2>
               <div className="space-y-4">
-                {notifications.map((notification) => (
-                  <div key={notification.id} className="flex items-start p-4 bg-gray-50 rounded-lg">
-                    <div className="flex-shrink-0">
-                      <Bell className="h-5 w-5 text-gray-600 mt-0.5" />
+                {clientProjects.map((project) => (
+                  <div key={project.id} className="border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-gray-900">{project.name}</h3>
+                        <p className="text-sm text-gray-600 mt-1">Responsable: {project.manager}</p>
+                      </div>
+                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                        project.status === 'Complété' 
+                          ? 'bg-green-100 text-green-800' 
+                          : project.status === 'En cours'
+                          ? 'bg-blue-100 text-blue-800'
+                          : 'bg-yellow-100 text-yellow-800'
+                      }`}>
+                        {project.status}
+                      </span>
                     </div>
-                    <div className="ml-3 flex-1">
-                      <p className="text-sm text-gray-900">{notification.message}</p>
-                      <p className="text-xs text-gray-500 mt-1">{notification.time}</p>
+                    
+                    <div className="mb-4">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-sm text-gray-600">Progression</span>
+                        <span className="text-sm font-semibold text-[#08227f]">{project.progress}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div 
+                          className="bg-[#08227f] h-2 rounded-full transition-all duration-300"
+                          style={{ width: `${project.progress}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="flex items-center text-gray-600">
+                        <Calendar className="h-4 w-4 mr-2" />
+                        Début: {project.startDate}
+                      </div>
+                      <div className="flex items-center text-gray-600">
+                        <Clock className="h-4 w-4 mr-2" />
+                        Fin prévue: {project.dueDate}
+                      </div>
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'updates' && (
+            <div className="p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">Mises à jour de vos projets</h2>
+              <div className="space-y-4">
+                {projectUpdates.map((update) => (
+                  <div key={update.id} className="flex items-start p-4 bg-gray-50 rounded-lg border-l-4" style={{borderLeftColor: update.type === 'success' ? '#10b981' : update.type === 'warning' ? '#f59e0b' : '#3b82f6'}}>
+                    <div className="flex-shrink-0 mt-1">
+                      {update.type === 'success' && <CheckCircle className="h-5 w-5 text-green-600" />}
+                      {update.type === 'warning' && <AlertCircle className="h-5 w-5 text-yellow-600" />}
+                      {update.type === 'info' && <Bell className="h-5 w-5 text-blue-600" />}
+                    </div>
+                    <div className="ml-3 flex-1">
+                      <p className="text-sm font-medium text-gray-700">{update.project}</p>
+                      <p className="text-sm text-gray-900 mt-1">{update.message}</p>
+                      <p className="text-xs text-gray-500 mt-1">{update.time}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'profile' && (
+            <div className="p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">Mon Profil</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-[#08227f] focus:border-[#08227f]"
+                    defaultValue="Jean Dupont"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                  <input
+                    type="email"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-[#08227f] focus:border-[#08227f]"
+                    defaultValue="jean.dupont@email.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
+                  <input
+                    type="tel"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-[#08227f] focus:border-[#08227f]"
+                    defaultValue="+33 6 12 34 56 78"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Entreprise</label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-[#08227f] focus:border-[#08227f]"
+                    defaultValue="Dupont Consulting"
+                  />
+                </div>
+              </div>
+              <div className="mt-6 flex justify-end">
+                <button className="bg-[#08227f] text-white px-6 py-2 rounded-lg hover:bg-[#041a60] transition-colors">
+                  Enregistrer les modifications
+                </button>
               </div>
             </div>
           )}
@@ -228,44 +227,27 @@ const Dashboard = () => {
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Paramètres du compte</h2>
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Informations personnelles</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Nom</label>
-                      <input
-                        type="text"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-gray-500 focus:border-gray-500"
-                        defaultValue="Jean Dupont"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                      <input
-                        type="email"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-gray-500 focus:border-gray-500"
-                        defaultValue="jean.dupont@email.com"
-                      />
-                    </div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-4">Préférences de notification</h3>
+                  <div className="space-y-3">
+                    <label className="flex items-center">
+                      <input type="checkbox" className="h-4 w-4 text-[#08227f] focus:ring-[#08227f] border-gray-300 rounded" defaultChecked />
+                      <span className="ml-2 text-sm text-gray-700">Recevoir des mises à jour par email</span>
+                    </label>
+                    <label className="flex items-center">
+                      <input type="checkbox" className="h-4 w-4 text-[#08227f] focus:ring-[#08227f] border-gray-300 rounded" defaultChecked />
+                      <span className="ml-2 text-sm text-gray-700">Notifications pour les étapes complétées</span>
+                    </label>
+                    <label className="flex items-center">
+                      <input type="checkbox" className="h-4 w-4 text-[#08227f] focus:ring-[#08227f] border-gray-300 rounded" />
+                      <span className="ml-2 text-sm text-gray-700">Partager mes projets publiquement</span>
+                    </label>
                   </div>
                 </div>
                 
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Préférences</h3>
-                  <div className="space-y-3">
-                    <label className="flex items-center">
-                      <input type="checkbox" className="h-4 w-4 text-gray-900 focus:ring-gray-500 border-gray-300 rounded" defaultChecked />
-                      <span className="ml-2 text-sm text-gray-700">Recevoir les notifications par email</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input type="checkbox" className="h-4 w-4 text-gray-900 focus:ring-gray-500 border-gray-300 rounded" />
-                      <span className="ml-2 text-sm text-gray-700">Profil public</span>
-                    </label>
-                  </div>
-                </div>
-                
-                <div className="flex justify-end">
-                  <button className="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
-                    Enregistrer les modifications
+                  <h3 className="text-lg font-medium text-gray-900 mb-4">Sécurité</h3>
+                  <button className="bg-[#08227f] text-white px-6 py-2 rounded-lg hover:bg-[#041a60] transition-colors">
+                    Changer le mot de passe
                   </button>
                 </div>
               </div>

@@ -2,11 +2,12 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Globe, TrendingUp, Users, BarChart, Lightbulb, ArrowRight, Mail, Linkedin, Twitter, Calendar, Award, Briefcase } from 'lucide-react';
+import Footer from '../components/Footer';
 
 const sliderImages = [
-  '/images/slider1.jpg', // Image Bénin / culture / ville
-  '/images/slider2.jpg', // Image bureau / équipe
-  '/images/slider3.jpg', // Image diaspora / projet
+  'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop', // Équipe collaborant
+  'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop', // Bureau moderne
+  'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&h=600&fit=crop', // Réunion professionnelle
 ];
 
 const departments = [
@@ -276,6 +277,7 @@ const About = () => {
           </motion.div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

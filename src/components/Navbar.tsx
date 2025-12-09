@@ -16,7 +16,7 @@ const Navbar = ({ isAuthenticated, userRole, onLogout }: NavbarProps) => {
     { label: "À propos", path: "/about" },
     { label: "Articles", path: "/articles" },
     { label: "Découvrir le Bénin", path: "/benin" },
-    { label: "Équipe", path: "/team" },
+    { label: "Nos Services", path: "/team" },
   ];
 
   return (
@@ -51,12 +51,20 @@ const Navbar = ({ isAuthenticated, userRole, onLogout }: NavbarProps) => {
           {isAuthenticated ? (
             <>
               {userRole === "admin" && (
-                <Link
-                  to="/admin"
-                  className="hover:text-blue-300 transition-colors duration-200"
-                >
-                  Admin
-                </Link>
+                <>
+                  <Link
+                    to="/admin/articles"
+                    className="hover:text-blue-300 transition-colors duration-200"
+                  >
+                    Articles
+                  </Link>
+                  <Link
+                    to="/admin/clients"
+                    className="hover:text-blue-300 transition-colors duration-200"
+                  >
+                    Clients
+                  </Link>
+                </>
               )}
               <button
                 onClick={onLogout}
@@ -101,13 +109,22 @@ const Navbar = ({ isAuthenticated, userRole, onLogout }: NavbarProps) => {
           {isAuthenticated ? (
             <>
               {userRole === "admin" && (
-                <Link
-                  to="/admin"
-                  onClick={() => setIsOpen(false)}
-                  className="block hover:text-blue-300"
-                >
-                  Admin
-                </Link>
+                <>
+                  <Link
+                    to="/admin/articles"
+                    onClick={() => setIsOpen(false)}
+                    className="block hover:text-blue-300"
+                  >
+                    Articles
+                  </Link>
+                  <Link
+                    to="/admin/clients"
+                    onClick={() => setIsOpen(false)}
+                    className="block hover:text-blue-300"
+                  >
+                    Clients
+                  </Link>
+                </>
               )}
               <button
                 onClick={() => {

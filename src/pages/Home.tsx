@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, TrendingUp, Shield, Users, Globe, BarChart } from "lucide-react";
 import { motion } from "framer-motion";
+import Footer from "../components/Footer";
 
 // ---------------------- Types ----------------------
 type Slide = { img: string };
@@ -112,56 +113,7 @@ const HeroBackgroundRotator: React.FC = () => {
   );
 };
 
-// ---------------------- Footer (chic) ----------------------
-const Footer: React.FC = () => {
-  return (
-    <footer className="bg-white text-[#08227f] py-12">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-        <div>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="h-10 w-10 rounded-lg bg-[#08227f] flex items-center justify-center text-white font-bold">BP</div>
-            <div>
-              <h4 className="text-lg font-semibold">Bridge Partners</h4>
-              <p className="text-sm text-gray-600">Créer un pont, connecter des ambitions</p>
-            </div>
-          </div>
 
-          <p className="text-sm text-gray-600">Nous aidons la diaspora et les investisseurs à structurer et gérer leurs projets au Bénin avec expertise et transparence.</p>
-        </div>
-
-        <div>
-          <h4 className="text-md font-semibold mb-3">Contact</h4>
-          <ul className="text-sm text-gray-600 space-y-2">
-            <li>📧 <a href="mailto:contact@bridgepartners.fr" className="hover:underline">contact@bridgepartners.fr</a></li>
-            <li>📞 <a href="tel:+33617055735" className="hover:underline">+33 6 17 05 57 35</a></li>
-            <li>📍 Cotonou, Bénin · Paris, France</li>
-            <li>🕐 Lun–Ven: 9h00 – 18h00</li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-md font-semibold mb-3">Restez connecté</h4>
-          <p className="text-sm text-gray-600 mb-4">Abonnez-vous à notre newsletter pour recevoir des analyses et opportunités business.</p>
-          <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
-            <input type="email" placeholder="Votre email" className="px-3 py-2 border rounded-md text-sm w-full" />
-            <button className="px-4 py-2 bg-[#08227f] text-white rounded-md text-sm">S'inscrire</button>
-          </form>
-
-          <div className="mt-6 flex gap-3 text-sm text-gray-600">
-            <a href="#" className="hover:underline">LinkedIn</a>
-            <a href="#" className="hover:underline">Instagram</a>
-            <a href="#" className="hover:underline">TikTok</a>
-            <a href="#" className="hover:underline">Facebook</a>
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-8 border-t pt-6 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} Bridge Partners. Tous droits réservés.
-      </div>
-    </footer>
-  );
-};
 
 // ---------------------- Home Component ----------------------
 const Home: React.FC = () => {

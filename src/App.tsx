@@ -10,7 +10,9 @@ import About from "./pages/About";
 import Benin from "./pages/BeninDiscovery";
 import Team from "./pages/Team";
 import AdminArticles from "./pages/AdminArticles";
+import AdminClients from "./pages/AdminClients";
 import ArticlePage from "./pages/ArticlePage";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -54,6 +56,18 @@ function App() {
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/register" element={<Register />} />
 
+        {/* Route Dashboard protégée pour utilisateurs normaux */}
+        <Route
+          path="/dashboard"
+          element={
+            isAuthenticated && userRole === "user" ? (
+              <Dashboard />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+
         {/* Routes admin protégées */}
         <Route
           path="/admin"
@@ -70,6 +84,18 @@ function App() {
           element={
             isAuthenticated && userRole === "admin" ? (
               <AdminArticles />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+
+        {/* Route Admin Clients */}
+        <Route
+          path="/admin/clients"
+          element={
+            isAuthenticated && userRole === "admin" ? (
+              <AdminClients />
             ) : (
               <Navigate to="/login" replace />
             )

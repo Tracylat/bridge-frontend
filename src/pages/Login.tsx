@@ -1,165 +1,83 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 
 interface LoginProps {
-  onLogin: (role: 'user' | 'admin') => void;
+  onLogin: (user: { role: 'admin' | 'user'; email: string; id?: string }) => void;
 }
+
+const ADMIN_ACCOUNT = { email: 'admin@bridgePartners.fr', password: 'admin123' };
+const CLIENT_ACCOUNTS = [
+  { id: '1', email: 'client1@bridgePartners.fr', password: 'client123' },
+  { id: '2', email: 'client2@bridgePartners.fr', password: 'client456' },
+];
 
 const Login = ({ onLogin }: LoginProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    setLoading(true);
     setError('');
 
-    try {
-      // Simulation d'une API d'authentification
-      await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(res => setTimeout(res, 800));
 
-      // Vérification des identifiants
-      if (email === 'admin@luxegroup.fr' && password === 'admin123') {
-        onLogin('admin');
-        navigate('/admin/articles'); // ← modification clé
-      } else if (email && password) {
-        onLogin('user');
-        navigate('/dashboard'); // ou /articles
-      } else {
-        setError('Email ou mot de passe incorrect');
-      }
-    } catch (err) {
-      setError('Une erreur est survenue. Veuillez réessayer.');
-    } finally {
-      setIsLoading(false);
+    if (email === ADMIN_ACCOUNT.email && password === ADMIN_ACCOUNT.password) {
+      onLogin({ role: 'admin', email });
+      navigate('/admin/articles');
+      return;
     }
+
+    const client = CLIENT_ACCOUNTS.find(c => c.email === email && c.password === password);
+    if (client) {
+      onLogin({ role: 'user', email: client.email, id: client.id });
+      navigate('/dashboard');
+      return;
+    }
+
+    setError('Identifiants invalides.');
+    setLoading(false);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="max-w-md w-full space-y-8">
-        <div>
-          <div className="flex justify-center">
-            <div className="text-center">
-              <span className="text-3xl font-bold text-gray-900">Luxe</span>
-              <span className="text-3xl font-light text-gray-600 ml-1">Group</span>
-            </div>
-          </div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Connexion à votre compte
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Ou{' '}
-            <Link to="/register" className="font-medium text-gray-900 hover:text-gray-700">
-              créez un nouveau compte
-            </Link>
-          </p>
+        <div className="text-center">
+          <h1 className="text-3xl font-bold">BridgePartners</h1>
+          <h2 className="mt-6 text-2xl font-semibold">Connexion</h2>
         </div>
-        
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm">
-              {error}
-            </div>
-          )}
-          
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Adresse email
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
-                  placeholder="votre@email.com"
-                />
-              </div>
-            </div>
-            
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                Mot de passe
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="password"
-                  name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none relative block w-full pl-10 pr-10 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
-                  placeholder="••••••••"
-                />
-                <button
-                  type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
-                  ) : (
-                    <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
-                  )}
-                </button>
-              </div>
-            </div>
-          </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-gray-900 focus:ring-gray-500 border-gray-300 rounded"
-              />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
-                Se souvenir de moi
-              </label>
-            </div>
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          {error && <div className="bg-red-50 text-red-600 px-4 py-3 rounded">{error}</div>}
 
-            <div className="text-sm">
-              <a href="#" className="font-medium text-gray-900 hover:text-gray-700">
-                Mot de passe oublié ?
-              </a>
+          <div>
+            <label>Email</label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-3.5" />
+              <input type="email" required value={email} onChange={e => setEmail(e.target.value)} className="w-full pl-10 py-3 border rounded-lg" placeholder="email" />
             </div>
           </div>
 
           <div>
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              {isLoading ? 'Connexion...' : 'Se connecter'}
-            </button>
+            <label>Mot de passe</label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-3.5" />
+              <input type={showPassword ? 'text' : 'password'} required value={password} onChange={e => setPassword(e.target.value)} className="w-full pl-10 py-3 border rounded-lg" placeholder="••••••" />
+              <button type="button" className="absolute right-3 top-3.5" onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? <EyeOff /> : <Eye />}
+              </button>
+            </div>
           </div>
 
-          <div className="text-center text-sm text-gray-600">
-            <p>Compte de démonstration:</p>
-            <p className="font-mono text-xs mt-1">Admin: admin@luxegroup.fr / admin123</p>
-            <p className="font-mono text-xs">Utilisateur: votre@email.com / motdepasse</p>
-          </div>
+          <button type="submit" disabled={loading} className="w-full py-3 rounded-lg bg-gray-900 text-white">
+            {loading ? 'Connexion...' : 'Se connecter'}
+          </button>
         </form>
       </div>
     </div>

@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Articles from "./pages/Articles";
+import Articles from  "./pages/Articles";
 import Contact from "./pages/contact";
 import About from "./pages/About";
 import Benin from "./pages/BeninDiscovery";
@@ -14,36 +14,30 @@ import AdminClients from "./pages/AdminClients";
 import ArticlePage from "./pages/ArticlePage";
 import Dashboard from "./pages/Dashboard";
 
+interface User {
+  role: "admin" | "user";
+  email: string;
+  id?: string;
+}
+
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    localStorage.getItem("auth") === "true"
+  const [user, setUser] = useState<User | null>(
+    localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")!) : null
   );
 
-  const [userRole, setUserRole] = useState<"user" | "admin" | null>(
-    localStorage.getItem("role") as "user" | "admin" | null
-  );
-
-  const handleLogin = (role: "user" | "admin") => {
-    setIsAuthenticated(true);
-    setUserRole(role);
-    localStorage.setItem("auth", "true");
-    localStorage.setItem("role", role);
+  const handleLogin = (user: User) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
   };
 
   const handleLogout = () => {
-    setIsAuthenticated(false);
-    setUserRole(null);
-    localStorage.removeItem("auth");
-    localStorage.removeItem("role");
+    setUser(null);
+    localStorage.removeItem("user");
   };
 
   return (
     <Router>
-      <Navbar
-        isAuthenticated={isAuthenticated}
-        userRole={userRole}
-        onLogout={handleLogout}
-      />
+      <Navbar user={user} onLogout={handleLogout} />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -53,52 +47,29 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/benin" element={<Benin />} />
         <Route path="/team" element={<Team />} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/register" element={<Register />} />
 
-        {/* Route Dashboard protégée pour utilisateurs normaux */}
+        <Route path="/login" element={!user ? <Login onLogin={handleLogin} /> : <Navigate to="/" replace />} />
+        <Route path="/register" element={!user ? <Register /> : <Navigate to="/" replace />} />
+
+        {/* Dashboard client */}
         <Route
           path="/dashboard"
           element={
-            isAuthenticated && userRole === "user" ? (
-              <Dashboard />
-            ) : (
-              <Navigate to="/login" replace />
-            )
+            user?.role === "user" ? <Dashboard /> : <Navigate to="/login" replace />
           }
         />
 
-        {/* Routes admin protégées */}
-        <Route
-          path="/admin"
-          element={
-            isAuthenticated && userRole === "admin" ? (
-              <Navigate to="/admin/articles" replace />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
+        {/* Admin routes */}
         <Route
           path="/admin/articles"
           element={
-            isAuthenticated && userRole === "admin" ? (
-              <AdminArticles />
-            ) : (
-              <Navigate to="/login" replace />
-            )
+            user?.role === "admin" ? <AdminArticles /> : <Navigate to="/login" replace />
           }
         />
-
-        {/* Route Admin Clients */}
         <Route
           path="/admin/clients"
           element={
-            isAuthenticated && userRole === "admin" ? (
-              <AdminClients />
-            ) : (
-              <Navigate to="/login" replace />
-            )
+            user?.role === "admin" ? <AdminClients /> : <Navigate to="/login" replace />
           }
         />
       </Routes>

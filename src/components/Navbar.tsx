@@ -2,13 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
-type NavbarProps = {
-  isAuthenticated: boolean;
-  userRole: "user" | "admin" | null;
+interface NavbarProps {
+  user: { role: "admin" | "user"; email: string } | null;
   onLogout: () => void;
-};
+}
 
-const Navbar = ({ isAuthenticated, userRole, onLogout }: NavbarProps) => {
+const Navbar = ({ user, onLogout }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
@@ -21,127 +20,69 @@ const Navbar = ({ isAuthenticated, userRole, onLogout }: NavbarProps) => {
 
   return (
     <header className="bg-[#08227f] text-white shadow-md">
-      {/* Navbar principal */}
       <nav className="flex items-center justify-between px-6 lg:px-12 py-4">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <img
-            src="/images/LOGO-BRIDGE-Blanc-jpeg(1).jpg"
-            alt="Logo"
-            className="h-12 w-auto object-contain hover:scale-105 transition-transform duration-300"
-          />
-          <h1 className="text-2xl font-bold tracking-wide">
-            <span className="text-white">Bridge</span>
-            <span className="text-blue-300">Partners</span>
-          </h1>
+        <Link to="/" className="flex items-center gap-3">
+          <img src="/images/LOGO-BRIDGE-Blanc-jpeg.jpg" alt="Bridge Partners" className="h-8 md:h-10 object-contain" />
+          <span className="hidden md:inline text-2xl font-bold">BridgePartners</span>
         </Link>
 
-        {/* Menu desktop */}
-        <div className="hidden md:flex items-center gap-8 font-medium">
+        {/* Desktop */}
+        <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className="hover:text-blue-300 transition-colors duration-200"
-            >
-              {link.label}
-            </Link>
+            <Link key={link.path} to={link.path} className="hover:text-blue-300">{link.label}</Link>
           ))}
 
-          {isAuthenticated ? (
+          {user ? (
             <>
-              {userRole === "admin" && (
+              {user.role === "admin" && (
                 <>
-                  <Link
-                    to="/admin/articles"
-                    className="hover:text-blue-300 transition-colors duration-200"
-                  >
-                    Articles
-                  </Link>
-                  <Link
-                    to="/admin/clients"
-                    className="hover:text-blue-300 transition-colors duration-200"
-                  >
-                    Clients
-                  </Link>
+                  <Link to="/admin/articles" className="hover:text-blue-300">Articles Admin</Link>
+                  <Link to="/admin/clients" className="hover:text-blue-300">Clients</Link>
                 </>
               )}
-              <button
-                onClick={onLogout}
-                className="bg-white text-[#08227f] font-semibold px-4 py-2 rounded-lg hover:bg-blue-100 transition-all"
-              >
+              {user.role === "user" && <Link to="/dashboard" className="hover:text-blue-300">Mon Dashboard</Link>}
+
+              <button onClick={onLogout} className="bg-white text-[#08227f] px-4 py-2 rounded-lg hover:bg-blue-100">
                 Déconnexion
               </button>
             </>
           ) : (
-            <Link
-              to="/login"
-              className="bg-white text-[#08227f] font-semibold px-4 py-2 rounded-lg hover:bg-blue-100 transition-all"
-            >
+            <Link to="/login" className="bg-white text-[#08227f] px-4 py-2 rounded-lg hover:bg-blue-100">
               Connexion
             </Link>
           )}
         </div>
 
-        {/* Mobile menu button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden focus:outline-none"
-        >
+        {/* Mobile */}
+        <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </nav>
 
-      {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-[#08227f] text-white px-6 py-4 space-y-3">
+        <div className="md:hidden bg-[#08227f] px-6 py-4 space-y-3">
           {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              onClick={() => setIsOpen(false)}
-              className="block hover:text-blue-300 transition-colors duration-200"
-            >
-              {link.label}
-            </Link>
+            <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)}>{link.label}</Link>
           ))}
 
-          {isAuthenticated ? (
+          {user ? (
             <>
-              {userRole === "admin" && (
+              {user.role === "admin" && (
                 <>
-                  <Link
-                    to="/admin/articles"
-                    onClick={() => setIsOpen(false)}
-                    className="block hover:text-blue-300"
-                  >
-                    Articles
-                  </Link>
-                  <Link
-                    to="/admin/clients"
-                    onClick={() => setIsOpen(false)}
-                    className="block hover:text-blue-300"
-                  >
-                    Clients
-                  </Link>
+                  <Link to="/admin/articles" onClick={() => setIsOpen(false)}>Articles Admin</Link>
+                  <Link to="/admin/clients" onClick={() => setIsOpen(false)}>Clients</Link>
                 </>
               )}
+              {user.role === "user" && <Link to="/dashboard" onClick={() => setIsOpen(false)}>Mon Dashboard</Link>}
               <button
-                onClick={() => {
-                  onLogout();
-                  setIsOpen(false);
-                }}
-                className="block w-full text-left bg-white text-[#08227f] font-semibold px-4 py-2 rounded-lg hover:bg-blue-100 transition-all"
+                onClick={() => { onLogout(); setIsOpen(false); }}
+                className="w-full text-left bg-white text-[#08227f] px-4 py-2 rounded-lg"
               >
                 Déconnexion
               </button>
             </>
           ) : (
-            <Link
-              to="/login"
-              onClick={() => setIsOpen(false)}
-              className="block bg-white text-[#08227f] font-semibold px-4 py-2 rounded-lg hover:bg-blue-100 transition-all"
-            >
+            <Link to="/login" onClick={() => setIsOpen(false)} className="w-full text-left bg-white text-[#08227f] px-4 py-2 rounded-lg">
               Connexion
             </Link>
           )}

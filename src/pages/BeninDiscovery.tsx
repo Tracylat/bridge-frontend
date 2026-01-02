@@ -3,21 +3,21 @@ import { Link } from "react-router-dom";
 import { ArrowDown } from "lucide-react";
 import Footer from "../components/Footer";
 
-// Slider images pour l'entête - Images authentiques du Bénin
+// Slider images pour l'entête - utilisation des images locales fournies
 const headerSlides = [
-  'https://live.staticflickr.com/65535/48905779858_8f8f5b1e8d_b.jpg', // Ganvié - maisons sur l'eau
-  'https://live.staticflickr.com/65535/49541541921_8c8c8b8b8b_b.jpg', // Abomey - palais royaux
-  'https://live.staticflickr.com/65535/48905779858_8f8f5b1e8d_b.jpg', // Cotonou - côte
+  '/images/benin-hero.svg', // Ganvié - maisons sur l'eau (hero)
+  '/images/benin-lagune.svg', // Vue aérienne lagune / pirogues
+  '/images/benin-monument.svg', // Monument / porte
 ];
 
 // Images pour les sections - Images authentiques du Bénin
 const sectionImages = {
-  transformation: 'https://images.unsplash.com/photo-1488747807830-63789f68bb65?w=600&h=400&fit=crop', // Cotonou moderne
-  reforms: 'https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=600&h=400&fit=crop', // Port de Cotonou
-  innovation: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop', // Bureaux modernes
-  sectors: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&h=400&fit=crop', // Champs agricoles
-  discovery: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&h=400&fit=crop', // Architecture africaine
-  invest: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop' // Centre commercial
+  transformation: '/images/benin-lagune.svg', // Ganvié / lagune
+  reforms: '/images/benin-village.svg', // Ville / architecture
+  innovation: '/images/benin-masque.svg', // Culture / masques
+  sectors: '/images/benin-cascade.svg', // Nature / cascades
+  discovery: '/images/benin-hero.svg', // Hero reuse for discovery
+  invest: '/images/benin-monument.svg' // Monument / porte
 };
 
 const Benin2 = () => {
@@ -81,7 +81,7 @@ const Benin2 = () => {
             </p>
           </div>
           <div className="lg:w-1/2">
-            <img src={sectionImages.transformation} alt="Transformation Bénin" className="rounded-xl shadow-lg"/>
+            <img src={sectionImages.transformation} alt="Transformation Bénin - Ganvié / lagune" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96" />
           </div>
         </section>
 
@@ -102,7 +102,7 @@ const Benin2 = () => {
             </p>
           </div>
           <div className="lg:w-1/2">
-            <img src={sectionImages.reforms} alt="Réformes Bénin" className="rounded-xl shadow-lg"/>
+            <img src={sectionImages.reforms} alt="Réformes Bénin - ville et institutions" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96" />
           </div>
         </section>
 
@@ -123,7 +123,7 @@ const Benin2 = () => {
             </p>
           </div>
           <div className="lg:w-1/2">
-            <img src={sectionImages.innovation} alt="Innovation Bénin" className="rounded-xl shadow-lg"/>
+            <img src={sectionImages.innovation} alt="Innovation et culture - masques traditionnels" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96" />
           </div>
         </section>
 
@@ -143,7 +143,7 @@ const Benin2 = () => {
             </ul>
           </div>
           <div className="lg:w-1/2">
-            <img src={sectionImages.sectors} alt="Secteurs Bénin" className="rounded-xl shadow-lg"/>
+            <img src={sectionImages.sectors} alt="Nature et tourisme - cascades" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96" />
           </div>
         </section>
 
@@ -162,7 +162,7 @@ const Benin2 = () => {
             </ul>
           </div>
           <div className="lg:w-1/2">
-            <img src={sectionImages.discovery} alt="Découverte Bénin" className="rounded-xl shadow-lg"/>
+            <img src={sectionImages.discovery} alt="Découverte Bénin - Ganvié" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96" />
           </div>
         </section>
 
@@ -184,7 +184,7 @@ const Benin2 = () => {
             </p>
           </div>
           <div className="lg:w-1/2">
-            <img src={sectionImages.invest} alt="Investir Bénin" className="rounded-xl shadow-lg"/>
+            <img src={sectionImages.invest} alt="Investir au Bénin - monuments et opportunités" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96" />
           </div>
         </section>
 

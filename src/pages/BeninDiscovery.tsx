@@ -3,21 +3,25 @@ import { Link } from "react-router-dom";
 import { ArrowDown } from "lucide-react";
 import Footer from "../components/Footer";
 
-// Slider images pour l'entête - utilisation des images locales fournies
-const headerSlides = [
-  '/images/benin-hero.svg', // Ganvié - maisons sur l'eau (hero)
-  '/images/benin-lagune.svg', // Vue aérienne lagune / pirogues
-  '/images/benin-monument.svg', // Monument / porte
-];
+// Imported images so Vite bundles them correctly regardless of base path
+import beninHero from "../assets/benin-hero.jpg";
+import beninLagune from "../assets/benin-lagune.jpg";
+import beninMonument from "../assets/benin-monument.jpg";
+import beninVillage from "../assets/benin-village.jpg";
+import beninMasque from "../assets/benin-masque.jpg";
+import beninCascade from "../assets/benin-cascade.jpg";
+
+// Slider images pour l'entête - utilisation des images importées
+const headerSlides = [beninHero, beninLagune, beninMonument];
 
 // Images pour les sections - Images authentiques du Bénin
 const sectionImages = {
-  transformation: '/images/benin-lagune.svg', // Ganvié / lagune
-  reforms: '/images/benin-village.svg', // Ville / architecture
-  innovation: '/images/benin-masque.svg', // Culture / masques
-  sectors: '/images/benin-cascade.svg', // Nature / cascades
-  discovery: '/images/benin-hero.svg', // Hero reuse for discovery
-  invest: '/images/benin-monument.svg' // Monument / porte
+  transformation: beninLagune, // Ganvié / lagune
+  reforms: beninVillage, // Ville / architecture
+  innovation: beninMasque, // Culture / masques
+  sectors: beninCascade, // Nature / cascades
+  discovery: beninHero, // Hero reuse for discovery
+  invest: beninMonument // Monument / porte
 };
 
 const Benin2 = () => {

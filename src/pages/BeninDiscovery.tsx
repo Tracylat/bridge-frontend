@@ -3,25 +3,25 @@ import { Link } from "react-router-dom";
 import { ArrowDown } from "lucide-react";
 import Footer from "../components/Footer";
 
-// ✅ Imports d'images corrigés
-import beninHero from "../assets/images.jpeg";         // ok
-import beninLagune from "../assets/images-4.jpeg";     // ok
-import beninMonument from "../assets/images-5.jpeg";   // ok, si c’est celui que tu veux
-import beninVillage from "../assets/images-2.jpeg";    // ok
-import beninMasque from "../assets/images-5.jpeg";     // ok
-import beninCascade from "../assets/images-7.jpeg";    // ok
+// Imported images so Vite bundles them correctly regardless of base path
+import beninHero from "../assets/benin-hero.jpg";
+import beninLagune from "../assets/benin-lagune.jpg";
+import beninMonument from "../assets/benin-monument.jpg";
+import beninVillage from "../assets/benin-village.jpg";
+import beninMasque from "../assets/benin-masque.jpg";
+import beninCascade from "../assets/benin-cascade.jpg";
 
-// Slider images pour l'entête
+// Slider images pour l'entête - utilisation des images importées
 const headerSlides = [beninHero, beninLagune, beninMonument];
 
-// Images pour les sections
+// Images pour les sections - Images authentiques du Bénin
 const sectionImages = {
-  transformation: beninLagune,
-  reforms: beninVillage,
-  innovation: beninMasque,
-  sectors: beninCascade,
-  discovery: beninHero,
-  invest: beninMonument,
+  transformation: beninLagune, // Ganvié / lagune
+  reforms: beninVillage, // Ville / architecture
+  innovation: beninMasque, // Culture / masques
+  sectors: beninCascade, // Nature / cascades
+  discovery: beninHero, // Hero reuse for discovery
+  invest: beninMonument // Monument / porte
 };
 
 const Benin2 = () => {
@@ -35,7 +35,7 @@ const Benin2 = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const primaryBlue = "#0D4F8B";
+  const primaryBlue = "#0D4F8B"; // Couleur proche du logo
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -69,6 +69,7 @@ const Benin2 = () => {
 
       {/* Sections */}
       <div id="sections" className="space-y-24">
+
         {/* Section 1 – Transformation */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-1/2">
@@ -84,12 +85,7 @@ const Benin2 = () => {
             </p>
           </div>
           <div className="lg:w-1/2">
-            <img
-              src={sectionImages.transformation}
-              alt="Transformation Bénin - Ganvié / lagune"
-              loading="lazy"
-              className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96"
-            />
+            <img src={sectionImages.transformation} alt="Transformation Bénin - Ganvié / lagune" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96" />
           </div>
         </section>
 
@@ -110,12 +106,7 @@ const Benin2 = () => {
             </p>
           </div>
           <div className="lg:w-1/2">
-            <img
-              src={sectionImages.reforms}
-              alt="Réformes Bénin - ville et institutions"
-              loading="lazy"
-              className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96"
-            />
+            <img src={sectionImages.reforms} alt="Réformes Bénin - ville et institutions" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96" />
           </div>
         </section>
 
@@ -136,12 +127,7 @@ const Benin2 = () => {
             </p>
           </div>
           <div className="lg:w-1/2">
-            <img
-              src={sectionImages.innovation}
-              alt="Innovation et culture - masques traditionnels"
-              loading="lazy"
-              className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96"
-            />
+            <img src={sectionImages.innovation} alt="Innovation et culture - masques traditionnels" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96" />
           </div>
         </section>
 
@@ -161,12 +147,7 @@ const Benin2 = () => {
             </ul>
           </div>
           <div className="lg:w-1/2">
-            <img
-              src={sectionImages.sectors}
-              alt="Nature et tourisme - cascades"
-              loading="lazy"
-              className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96"
-            />
+            <img src={sectionImages.sectors} alt="Nature et tourisme - cascades" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96" />
           </div>
         </section>
 
@@ -185,12 +166,7 @@ const Benin2 = () => {
             </ul>
           </div>
           <div className="lg:w-1/2">
-            <img
-              src={sectionImages.discovery}
-              alt="Découverte Bénin - Ganvié"
-              loading="lazy"
-              className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96"
-            />
+            <img src={sectionImages.discovery} alt="Découverte Bénin - Ganvié" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96" />
           </div>
         </section>
 
@@ -212,12 +188,7 @@ const Benin2 = () => {
             </p>
           </div>
           <div className="lg:w-1/2">
-            <img
-              src={sectionImages.invest}
-              alt="Investir au Bénin - monuments et opportunités"
-              loading="lazy"
-              className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96"
-            />
+            <img src={sectionImages.invest} alt="Investir au Bénin - monuments et opportunités" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96" />
           </div>
         </section>
 
@@ -237,7 +208,6 @@ const Benin2 = () => {
           </Link>
         </section>
       </div>
-
       <Footer />
     </div>
   );

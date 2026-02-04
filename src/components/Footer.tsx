@@ -3,7 +3,7 @@ import { FaLinkedin, FaInstagram, FaFacebook, FaTiktok } from "react-icons/fa";
 import emailjs from "emailjs-com";
 
 const SERVICE_ID = "service_r3wdsfq";
-const TEMPLATE_ID = "template_4updv8n";
+const TEMPLATE_ID = "template_yoqunl8";
 const USER_ID = "F5-c2lxaAGI9GHTa4";
 
 const Footer = () => {

@@ -19,17 +19,17 @@ const Navbar = ({ user, onLogout }: NavbarProps) => {
   ];
 
   return (
-    <header className="bg-[#08227f] text-white shadow-md">
-      <nav className="flex items-center justify-between px-6 lg:px-12 py-4">
+    <header className="text-white shadow-md" style={{ background: 'linear-gradient(90deg, var(--benin-ochre), var(--bridge-gradient-end))' }}>
+      <nav className="flex items-center justify-between px-6 lg:px-12 py-4 nav-compact">
         <Link to="/" className="flex items-center gap-3">
-          <img src="/images/LOGO-BRIDGE-Blanc-jpeg.jpg" alt="Bridge Partners" className="h-8 md:h-10 object-contain" />
-          <span className="hidden md:inline text-2xl font-bold">BridgePartners</span>
+          <img src="/images/LOGO-BRIDGE-Blanc-jpeg.jpg" alt="Bridge Partners" className="h-8 md:h-10 object-contain rounded-sm" />
+          <span className="hidden md:inline text-2xl font-bold tracking-tight">BridgePartners</span>
         </Link>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
-            <Link key={link.path} to={link.path} className="hover:text-blue-300">{link.label}</Link>
+            <Link key={link.path} to={link.path} className="text-white/95 hover:text-yellow-400 transition">{link.label}</Link>
           ))}
 
           {user ? (
@@ -42,12 +42,12 @@ const Navbar = ({ user, onLogout }: NavbarProps) => {
               )}
               {user.role === "user" && <Link to="/dashboard" className="hover:text-blue-300">Mon Dashboard</Link>}
 
-              <button onClick={onLogout} className="bg-white text-[#08227f] px-4 py-2 rounded-lg hover:bg-blue-100">
+              <button onClick={onLogout} className="btn-bridge">
                 Déconnexion
               </button>
             </>
           ) : (
-            <Link to="/login" className="bg-white text-[#08227f] px-4 py-2 rounded-lg hover:bg-blue-100">
+            <Link to="/login" className="btn-bridge">
               Connexion
             </Link>
           )}

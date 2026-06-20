@@ -55,7 +55,7 @@ const HeroBackgroundRotator: React.FC = () => {
   }, [index]);
 
   return (
-    <section className="relative w-full h-[80vh] lg:h-[90vh] overflow-hidden" aria-label="Hero">
+    <section className="relative w-full h-[80vh] lg:h-[90vh] overflow-hidden hero-large" aria-label="Hero">
       {/* previous image: fades out */}
       <div
         className="absolute inset-0 bg-cover bg-center transition-opacity"
@@ -78,12 +78,12 @@ const HeroBackgroundRotator: React.FC = () => {
         aria-hidden
       />
 
-      {/* dark gradient overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 pointer-events-none" />
+      {/* visible ochre->blue overlay for stronger brand feel */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(217,130,43,0.85) 0%, rgba(8,34,127,0.55) 55%, rgba(0,0,0,0.0) 100%)' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="text-center lg:text-left text-white">
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+          <h1 className="hero-title-large font-extrabold mb-4 leading-tight accent-underline">
             Bridge Partners
             <span className="block text-[#82aaff] font-light text-2xl mt-2">Créer un pont, connecter des ambitions...</span>
           </h1>
@@ -118,14 +118,14 @@ const HeroBackgroundRotator: React.FC = () => {
 // ---------------------- Home Component ----------------------
 const Home: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white text-[#08227f]">
+    <div className="min-h-screen site-bg text-[#08227f]">
       <HeroBackgroundRotator />
 
       {/* Features Section */}
-      <section className="py-20 bg-gradient-to-b from-[#041a60] to-[#08227f] text-white">
+      <section className="py-20 bridge-hero benin-texture text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 drop-shadow">Nos Services</h2>
+            <h2 className="display-title text-3xl md:text-4xl font-bold mb-4 drop-shadow">Nos Services</h2>
             <p className="text-lg text-gray-200 max-w-2xl mx-auto">Des solutions sur mesure pour vos projets</p>
           </div>
 
@@ -136,7 +136,7 @@ const Home: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="p-6 bg-white text-[#08227f] rounded-xl hover:bg-[#e6ecff] transition-all duration-300 shadow-md border border-[#08227f]/10"
+                className="p-6 bg-white text-[#08227f] rounded-xl hover:bg-[#e6ecff] transition-all duration-300 card-bridge-strong border border-[#08227f]/10"
               >
                 <div className="mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
@@ -154,7 +154,7 @@ const Home: React.FC = () => {
           <p className="text-xl text-gray-200 mb-8">Contactez-nous dès aujourd'hui pour donner vie à votre projet</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#08227f] font-semibold rounded-lg shadow-lg hover:bg-[#e6ecff] transition">
+            <Link to="/contact" className="btn-bridge inline-flex items-center justify-center">
               Contactez-nous
             </Link>
 

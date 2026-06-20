@@ -6,8 +6,14 @@ export default {
   ],
   theme: {
     extend: {
-          colors: {
-        primary: '#08227f', // remplace cette valeur par la couleur de ton logo
+      colors: {
+        primary: '#08227f', // couleur logo
+        'benin-ochre': '#D9822B', // warm ochre (traditional)
+        'benin-terra': '#A33E2B',  // terracotta
+        'benin-green': '#2E7A4B',  // deep green
+        'france-steel': '#3A506B', // modern steel blue
+        'bridge-gradient-start': '#D9822B',
+        'bridge-gradient-end': '#08227f',
       },
     },
   },

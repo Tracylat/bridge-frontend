@@ -78,8 +78,8 @@ const HeroBackgroundRotator: React.FC = () => {
         aria-hidden
       />
 
-      {/* visible ochre->blue overlay for stronger brand feel */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(217,130,43,0.85) 0%, rgba(8,34,127,0.55) 55%, rgba(0,0,0,0.0) 100%)' }} />
+      {/* dark gradient overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="text-center lg:text-left text-white">

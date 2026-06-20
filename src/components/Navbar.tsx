@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+// decorative thumbnails
+import beninThumb from "../assets/benin-hero.jpg";
 import { Menu, X } from "lucide-react";
 
 interface NavbarProps {
@@ -19,17 +21,21 @@ const Navbar = ({ user, onLogout }: NavbarProps) => {
   ];
 
   return (
-    <header className="text-white shadow-md" style={{ background: 'linear-gradient(90deg, var(--benin-ochre), var(--bridge-gradient-end))' }}>
+    <header className="text-white adenka-nav">
       <nav className="flex items-center justify-between px-6 lg:px-12 py-4 nav-compact">
         <Link to="/" className="flex items-center gap-3">
-          <img src="/images/LOGO-BRIDGE-Blanc-jpeg.jpg" alt="Bridge Partners" className="h-8 md:h-10 object-contain rounded-sm" />
-          <span className="hidden md:inline text-2xl font-bold tracking-tight">BridgePartners</span>
+          <img src="/images/LOGO-BRIDGE-Blanc-jpeg.jpg" alt="Bridge Partners" className="h-10 md:h-12 object-contain rounded-sm drop-shadow" />
+          <span className="hidden md:inline text-2xl font-bold tracking-tight brand-title">BridgePartners</span>
         </Link>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-6">
+          <div className="hidden sm:flex items-center gap-2 mr-2">
+            <img src={beninThumb} alt="Bénin" className="h-7 w-10 object-cover rounded-sm border" loading="lazy" />
+            <img src="/images/france-1.jpg" alt="France" className="h-7 w-10 object-cover rounded-sm border" loading="lazy" />
+          </div>
           {navLinks.map((link) => (
-            <Link key={link.path} to={link.path} className="text-white/95 hover:text-yellow-400 transition">{link.label}</Link>
+            <Link key={link.path} to={link.path} className="text-white hover:text-[var(--adenka-ochre)] transition">{link.label}</Link>
           ))}
 
           {user ? (
@@ -42,12 +48,12 @@ const Navbar = ({ user, onLogout }: NavbarProps) => {
               )}
               {user.role === "user" && <Link to="/dashboard" className="hover:text-blue-300">Mon Dashboard</Link>}
 
-              <button onClick={onLogout} className="btn-bridge">
+              <button onClick={onLogout} className="adenka-cta">
                 Déconnexion
               </button>
             </>
           ) : (
-            <Link to="/login" className="btn-bridge">
+            <Link to="/login" className="adenka-cta">
               Connexion
             </Link>
           )}

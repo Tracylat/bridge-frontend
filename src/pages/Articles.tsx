@@ -34,13 +34,13 @@ export default function Articles() {
   const rest = articles.slice(1);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen site-bg flex flex-col">
       {/* Hero / Featured */}
       <section className="relative">
         {featured ? (
           <div className="relative h-[420px] md:h-[520px] bg-gray-100">
-            <img src={featured.image_url || 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1400&h=700&fit=crop'} alt={featured.title} className="w-full h-full object-cover object-center" />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent flex items-center">
+            <img src={featured.image_url || 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1400&h=700&fit=crop'} alt={featured.title} className="w-full h-full object-cover object-center benin-frame" />
+                <div className="absolute inset-0 bridge-hero/80 bg-gradient-to-r from-black/60 via-black/30 to-transparent flex items-center">
               <div className="max-w-5xl mx-auto px-6 lg:px-12 text-white">
                 <motion.h1 initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight drop-shadow-lg">
                   {featured.title}
@@ -49,7 +49,7 @@ export default function Articles() {
                   {featured.description}
                 </motion.p>
                 <div className="mt-6">
-                  <Link to={`/article/${featured.id}`} className="inline-block bg-white text-[#08227f] font-semibold px-5 py-3 rounded-full shadow hover:shadow-lg">
+                  <Link to={`/article/${featured.id}`} className="inline-block btn-bridge">
                     Lire l'article
                   </Link>
                 </div>
@@ -79,16 +79,16 @@ export default function Articles() {
             </div>
 
             <aside className="hidden lg:block">
-              <div className="bg-white rounded-2xl p-6 shadow">
+              <div className="bg-white rounded-2xl p-6 shadow card-bridge-strong">
                 <h4 className="text-lg font-semibold mb-4">Abonnez‑vous</h4>
                 <p className="text-sm text-gray-600">Recevez les dernières nouvelles et articles directement dans votre boîte mail.</p>
                 <div className="mt-4">
                   <input className="w-full border rounded-lg px-3 py-2 text-sm" placeholder="Votre email" />
-                  <button className="mt-3 w-full bg-[#08227f] text-white px-4 py-2 rounded-lg">S'abonner</button>
+                  <button className="mt-3 w-full btn-bridge">S'abonner</button>
                 </div>
               </div>
 
-              <div className="mt-6 bg-white rounded-2xl p-6 shadow">
+              <div className="mt-6 bg-white rounded-2xl p-6 shadow card-bridge-strong">
                 <h4 className="text-lg font-semibold mb-3">Articles récents</h4>
                 <div className="flex flex-col gap-3">
                   {articles.slice(0, 5).map((a) => (

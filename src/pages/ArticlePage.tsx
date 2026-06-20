@@ -75,19 +75,19 @@ export default function ArticlePage() {
   const date = article.created_at ? new Date(article.created_at).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen site-bg">
       {/* Hero image */}
-      <header className="relative w-full overflow-hidden">
+      <header className="relative w-full overflow-hidden bridge-hero">
         <div className="w-full h-64 md:h-96 bg-gray-200">
           {article.image_url ? (
-            <img src={article.image_url} alt={article.title} className="w-full h-full object-cover object-center" />
+            <img src={article.image_url} alt={article.title} className="w-full h-full object-cover object-center benin-frame" />
           ) : (
             <div className="w-full h-full bg-gradient-to-r from-[#08227f] to-[#1a3bb8] flex items-center justify-center text-white">{article.title}</div>
           )}
         </div>
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-4xl mx-auto p-6 lg:p-12 text-white">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight drop-shadow-md">{article.title}</h1>
+            <h1 className="display-title text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight drop-shadow-md accent-underline">{article.title}</h1>
             <div className="mt-3 text-sm md:text-base text-gray-100/90">{date} • Bridge Partners</div>
           </div>
         </div>
@@ -107,12 +107,12 @@ export default function ArticlePage() {
               </div>
             </div>
 
-            <div className="mt-6 bg-gray-50 p-4 rounded-lg">
+            <div className="mt-6 bg-gray-50 p-4 rounded-lg card-bridge-strong">
               <h4 className="text-sm font-semibold">Vous avez aimé ?</h4>
               <p className="text-sm text-gray-600 mt-2">Abonnez-vous à notre newsletter pour recevoir les prochains articles.</p>
               <div className="mt-3 flex gap-2">
                 <input className="flex-1 border rounded-lg px-3 py-2 text-sm" placeholder="Votre email" />
-                <button className="bg-[#08227f] text-white px-4 py-2 rounded-lg text-sm">S'abonner</button>
+                <button className="btn-bridge text-sm">S'abonner</button>
               </div>
             </div>
           </div>

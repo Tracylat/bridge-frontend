@@ -27,19 +27,19 @@ export default function ArticleCard({ article, compact = false }: Props) {
       initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45 }}
-      className={`bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow ${
+      className={`bg-white rounded-2xl overflow-hidden card-bridge adenka-card hover:shadow-2xl transition-shadow ${
         compact ? 'flex items-center gap-4' : ''
       }`}
     >
       <Link to={`/article/${article.id}`} className={`group block w-full ${compact ? 'flex items-center' : ''}`}>
-        <div className={`${compact ? 'w-36 flex-shrink-0 h-24' : 'w-full h-48'} relative overflow-hidden`}> 
+          <div className={`${compact ? 'w-36 flex-shrink-0 h-24' : 'w-full h-48'} relative overflow-hidden benin-frame`}> 
           <img
             src={img}
             alt={article.title}
             className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-          <span className="absolute left-3 top-3 bg-[#08227f] text-white text-xs font-medium px-3 py-1 rounded-full">Article</span>
+          <span className="absolute left-3 top-3 bg-[var(--adenka-ochre)] text-white text-xs font-medium px-3 py-1 rounded-full">Article</span>
         </div>
 
         <div className={`p-4 ${compact ? 'flex-1' : ''}`}>
@@ -47,7 +47,7 @@ export default function ArticleCard({ article, compact = false }: Props) {
           <p className="text-sm md:text-base text-gray-600 mt-3 line-clamp-3">{article.description || (article.content?.substring(0, 140) + '...')}</p>
           <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
             <span className="text-xs text-gray-400">{formatDate(article.created_at)}</span>
-            <span className="text-[#08227f] font-semibold inline-flex items-center">Lire <ArrowRight className="ml-2 h-4 w-4" /></span>
+            <span className="text-white font-semibold inline-flex items-center adenka-cta py-1 px-3 rounded">Lire <ArrowRight className="ml-2 h-4 w-4" /></span>
           </div>
         </div>
       </Link>

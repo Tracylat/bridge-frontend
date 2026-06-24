@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bridge Partners – Créer un pont, connecter des ambitions</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: #0a1a3a;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+/* ===================== TOKENS ===================== */
+:root {
+  --blue-deep: #08227f;
+  --blue-mid:  #1a45b0;
+  --blue-light: #e6ecff;
+  --blue-pale: #f0f4ff;
+  --ink: #0a1a3a;
+  --ink-soft: #3a4a6a;
+  --white: #ffffff;
+  --off-white: #fafbff;
+  --gold: #c9a84c;
+  --gold-light: #f0d896;
+}
+
+/* ===================== ARTISAN PATTERNS (SVG inline) ===================== */
+.pattern-kente {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect width='60' height='60' fill='none'/%3E%3Cpath d='M0 0h15v15H0zM30 0h15v15H30zM15 15h15v15H15zM45 15h15v15H45zM0 30h15v15H0zM30 30h15v15H30zM15 45h15v15H15zM45 45h15v15H45z' fill='%2308227f' fill-opacity='.04'/%3E%3Cpath d='M7.5 7.5h0' stroke='%23c9a84c' stroke-width='1' stroke-opacity='.15'/%3E%3Cline x1='0' y1='15' x2='60' y2='15' stroke='%23c9a84c' stroke-width='.5' stroke-opacity='.12'/%3E%3Cline x1='0' y1='30' x2='60' y2='30' stroke='%23c9a84c' stroke-width='.5' stroke-opacity='.12'/%3E%3Cline x1='0' y1='45' x2='60' y2='45' stroke='%23c9a84c' stroke-width='.5' stroke-opacity='.12'/%3E%3Cline x1='15' y1='0' x2='15' y2='60' stroke='%23c9a84c' stroke-width='.5' stroke-opacity='.12'/%3E%3Cline x1='30' y1='0' x2='30' y2='60' stroke='%23c9a84c' stroke-width='.5' stroke-opacity='.12'/%3E%3Cline x1='45' y1='0' x2='45' y2='60' stroke='%23c9a84c' stroke-width='.5' stroke-opacity='.12'/%3E%3C/svg%3E");
+}
+.pattern-adinkra {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='18' fill='none' stroke='%2308227f' stroke-width='1' stroke-opacity='.06'/%3E%3Ccircle cx='40' cy='40' r='10' fill='none' stroke='%2308227f' stroke-width='1' stroke-opacity='.06'/%3E%3Cline x1='40' y1='22' x2='40' y2='58' stroke='%2308227f' stroke-width='1' stroke-opacity='.05'/%3E%3Cline x1='22' y1='40' x2='58' y2='40' stroke='%2308227f' stroke-width='1' stroke-opacity='.05'/%3E%3Ccircle cx='0' cy='0' r='4' fill='none' stroke='%23c9a84c' stroke-width='.8' stroke-opacity='.12'/%3E%3Ccircle cx='80' cy='0' r='4' fill='none' stroke='%23c9a84c' stroke-width='.8' stroke-opacity='.12'/%3E%3Ccircle cx='0' cy='80' r='4' fill='none' stroke='%23c9a84c' stroke-width='.8' stroke-opacity='.12'/%3E%3Ccircle cx='80' cy='80' r='4' fill='none' stroke='%23c9a84c' stroke-width='.8' stroke-opacity='.12'/%3E%3C/svg%3E");
+}
+.pattern-bogolan {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='none'/%3E%3Crect x='0' y='0' width='10' height='10' fill='%2308227f' fill-opacity='.03'/%3E%3Crect x='20' y='0' width='10' height='10' fill='%2308227f' fill-opacity='.03'/%3E%3Crect x='10' y='10' width='10' height='10' fill='%2308227f' fill-opacity='.03'/%3E%3Crect x='30' y='10' width='10' height='10' fill='%2308227f' fill-opacity='.03'/%3E%3Crect x='0' y='20' width='10' height='10' fill='%2308227f' fill-opacity='.03'/%3E%3Crect x='20' y='20' width='10' height='10' fill='%2308227f' fill-opacity='.03'/%3E%3Crect x='10' y='30' width='10' height='10' fill='%2308227f' fill-opacity='.03'/%3E%3Crect x='30' y='30' width='10' height='10' fill='%2308227f' fill-opacity='.03'/%3E%3Cline x1='5' y1='0' x2='5' y2='40' stroke='%23c9a84c' stroke-width='.4' stroke-opacity='.1' stroke-dasharray='2,2'/%3E%3Cline x1='15' y1='0' x2='15' y2='40' stroke='%23c9a84c' stroke-width='.4' stroke-opacity='.1' stroke-dasharray='2,2'/%3E%3Cline x1='25' y1='0' x2='25' y2='40' stroke='%23c9a84c' stroke-width='.4' stroke-opacity='.1' stroke-dasharray='2,2'/%3E%3Cline x1='35' y1='0' x2='35' y2='40' stroke='%23c9a84c' stroke-width='.4' stroke-opacity='.1' stroke-dasharray='2,2'/%3E%3C/svg%3E");
+}
+
+/* ===================== TOPBAR ===================== */
+.topbar {
+  background: var(--blue-deep);
+  color: rgba(255,255,255,.7);
+  font-size: 12px;
+  letter-spacing: .05em;
+  padding: 6px 0;
+  text-align: center;
+}
+.topbar span { margin: 0 12px; }
+.topbar a { color: var(--gold-light); text-decoration: none; }
+
+/* ===================== NAVBAR ===================== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid rgba(8,34,127,.08);
+  box-shadow: 0 2px 20px rgba(8,34,127,.06);
+}
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.nav-logo-mark {
+  width: 44px;
+  height: 44px;
+  background: var(--blue-deep);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.nav-logo-mark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cpath d='M8 22 Q22 8 36 22 Q22 36 8 22Z' fill='none' stroke='%23c9a84c' stroke-width='1.5' stroke-opacity='.6'/%3E%3Ccircle cx='22' cy='22' r='4' fill='%23c9a84c' fill-opacity='.8'/%3E%3C/svg%3E");
+}
+.nav-logo-text { display: flex; flex-direction: column; }
+.nav-logo-text strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--blue-deep);
+  line-height: 1;
+}
+.nav-logo-text span {
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1.4;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color .2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--blue-deep);
+  transition: width .25s;
+}
+.nav-links a:hover { color: var(--blue-deep); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--blue-deep);
+  color: var(--white) !important;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: .08em !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: #041a60 !important; color: var(--white) !important; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--blue-deep);
+  border-radius: 2px;
+  transition: .3s;
+}
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-top: 2px solid var(--blue-deep);
+  padding: 24px 32px;
+  box-shadow: 0 8px 24px rgba(8,34,127,.1);
+}
+.mobile-menu.open { display: block; }
+.mobile-menu a {
+  display: block;
+  padding: 12px 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(8,34,127,.06);
+}
+.mobile-menu a:hover { color: var(--blue-deep); }
+
+/* ===================== SECTION BASE ===================== */
+.section { width: 100%; }
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ===================== PAGE SYSTEM ===================== */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ===================== HERO ===================== */
+.hero {
+  position: relative;
+  height: 92vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.hero-slides {
+  position: absolute;
+  inset: 0;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.hero-slide.active { opacity: 1; }
+.hero-slide:nth-child(1) { background-image: linear-gradient(135deg, #08227f 0%, #1a45b0 40%, #0a1a3a 100%); }
+.hero-slide:nth-child(2) { background-image: linear-gradient(135deg, #041a60 0%, #08227f 60%, #1a45b0 100%); }
+.hero-slide:nth-child(3) { background-image: linear-gradient(135deg, #0a1a3a 0%, #041a60 50%, #08227f 100%); }
+
+/* Artisan overlay on hero */
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ccircle cx='60' cy='60' r='30' fill='none' stroke='white' stroke-width='1' stroke-opacity='.06'/%3E%3Ccircle cx='60' cy='60' r='18' fill='none' stroke='%23c9a84c' stroke-width='.8' stroke-opacity='.1'/%3E%3Ccircle cx='60' cy='60' r='6' fill='none' stroke='white' stroke-width='.6' stroke-opacity='.12'/%3E%3Cline x1='60' y1='30' x2='60' y2='90' stroke='white' stroke-width='.5' stroke-opacity='.07'/%3E%3Cline x1='30' y1='60' x2='90' y2='60' stroke='white' stroke-width='.5' stroke-opacity='.07'/%3E%3Cline x1='38' y1='38' x2='82' y2='82' stroke='%23c9a84c' stroke-width='.4' stroke-opacity='.08'/%3E%3Cline x1='82' y1='38' x2='38' y2='82' stroke='%23c9a84c' stroke-width='.4' stroke-opacity='.08'/%3E%3Ccircle cx='0' cy='0' r='8' fill='none' stroke='white' stroke-width='.6' stroke-opacity='.06'/%3E%3Ccircle cx='120' cy='0' r='8' fill='none' stroke='white' stroke-width='.6' stroke-opacity='.06'/%3E%3Ccircle cx='0' cy='120' r='8' fill='none' stroke='white' stroke-width='.6' stroke-opacity='.06'/%3E%3Ccircle cx='120' cy='120' r='8' fill='none' stroke='white' stroke-width='.6' stroke-opacity='.06'/%3E%3C/svg%3E");
+}
+
+.hero-deco-line {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  z-index: 2;
+  background: linear-gradient(to left, rgba(255,255,255,.03) 0%, transparent 100%);
+  border-left: 1px solid rgba(201,168,76,.15);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 0 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 24px;
+  opacity: .9;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 7vw, 88px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 8px;
+  letter-spacing: -.01em;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+  font-weight: 400;
+}
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 2.5vw, 26px);
+  color: rgba(255,255,255,.75);
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 16px;
+  letter-spacing: .01em;
+}
+.hero-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,.7);
+  max-width: 540px;
+  line-height: 1.75;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--white);
+  color: var(--blue-deep);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: .25s;
+}
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: transparent;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.35);
+  cursor: pointer;
+  transition: .25s;
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.6);
+}
+
+/* Hero stats bar */
+.hero-stats {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(4,26,96,.85);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(201,168,76,.2);
+}
+.hero-stats-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.hero-stat {
+  text-align: center;
+  padding: 8px 24px;
+  border-right: 1px solid rgba(201,168,76,.15);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-top: 4px;
+}
+
+/* ===================== DIVIDER ARTISAN ===================== */
+.divider-artisan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px 0 0;
+}
+.divider-artisan::before,
+.divider-artisan::after {
+  content: '';
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+.divider-artisan::after {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+.divider-artisan-symbol {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  position: relative;
+  transform: rotate(45deg);
+}
+.divider-artisan-symbol::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+}
+
+/* ===================== SECTION TITLES ===================== */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.section-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--blue-deep);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  margin-bottom: 16px;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--blue-mid);
+  font-weight: 400;
+}
+.section-desc {
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  max-width: 600px;
+  font-weight: 300;
+}
+
+/* ===================== HOME – FEATURES ===================== */
+.features-section {
+  padding: 100px 0;
+  background: var(--white);
+  position: relative;
+}
+.features-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.features-header { margin-bottom: 64px; }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+}
+.feature-card {
+  background: var(--off-white);
+  border: 1px solid rgba(8,34,127,.07);
+  border-radius: 12px;
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: .3s;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--blue-deep), var(--blue-mid));
+  transform: scaleX(0);
+  transition: .3s;
+  transform-origin: left;
+}
+.feature-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(8,34,127,.1); }
+.feature-card:hover::before { transform: scaleX(1); }
+.feature-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--blue-light);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--blue-deep);
+  font-size: 22px;
+}
+.feature-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--blue-deep);
+  margin-bottom: 8px;
+}
+.feature-card p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+/* ===================== BENIN STRIP ===================== */
+.benin-strip {
+  padding: 100px 0;
+  background: var(--blue-deep);
+  position: relative;
+  overflow: hidden;
+}
+.benin-strip-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='20' fill='none' stroke='white' stroke-width='1' stroke-opacity='.06'/%3E%3Ccircle cx='50' cy='50' r='10' fill='none' stroke='%23c9a84c' stroke-width='.8' stroke-opacity='.08'/%3E%3Cline x1='50' y1='30' x2='50' y2='70' stroke='white' stroke-width='.5' stroke-opacity='.06'/%3E%3Cline x1='30' y1='50' x2='70' y2='50' stroke='white' stroke-width='.5' stroke-opacity='.06'/%3E%3C/svg%3E");
+}
+.benin-strip-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.benin-strip .section-title { color: var(--white); }
+.benin-strip .section-desc { color: rgba(255,255,255,.7); max-width: none; }
+.benin-image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.benin-img-wrap {
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(201,168,76,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+.benin-img-wrap:first-child { grid-column: 1 / -1; aspect-ratio: 16/7; }
+.benin-placeholder { color: rgba(255,255,255,.3); font-size: 48px; text-align: center; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+
+/* ===================== CTA SECTION ===================== */
+.cta-section {
+  padding: 100px 0;
+  background: var(--white);
+  position: relative;
+}
+.cta-section.dark {
+  background: var(--blue-deep);
+}
+.cta-inner {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.cta-inner .section-title { color: var(--white); }
+.cta-inner p { color: rgba(255,255,255,.7); font-size: 16px; line-height: 1.75; margin-bottom: 40px; }
+.cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* ===================== ABOUT PAGE ===================== */
+.about-hero {
+  padding: 120px 0 80px;
+  background: var(--off-white);
+  position: relative;
+  overflow: hidden;
+}
+.about-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='16' fill='none' stroke='%2308227f' stroke-width='1' stroke-opacity='.05'/%3E%3Cline x1='40' y1='24' x2='40' y2='56' stroke='%2308227f' stroke-width='.6' stroke-opacity='.04'/%3E%3Cline x1='24' y1='40' x2='56' y2='40' stroke='%2308227f' stroke-width='.6' stroke-opacity='.04'/%3E%3C/svg%3E");
+}
+.about-hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ===================== SERVICES CARDS ===================== */
+.services-section { padding: 100px 0; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-top: 64px;
+}
+.service-card {
+  background: var(--white);
+  border: 1px solid rgba(8,34,127,.08);
+  border-radius: 16px;
+  padding: 44px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: .3s;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right, var(--blue-deep), var(--gold));
+  transform: scaleX(0);
+  transition: .35s;
+  transform-origin: left;
+}
+.service-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(8,34,127,.12); }
+.service-card:hover::after { transform: scaleX(1); }
+.service-card-pattern {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid rgba(8,34,127,.04);
+}
+.service-card-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,.08);
+}
+.service-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--blue-light), var(--blue-pale));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+.service-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--blue-deep);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.service-card-intro {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+.service-missions {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.service-missions li {
+  font-size: 13px;
+  color: var(--ink-soft);
+  padding: 6px 0 6px 20px;
+  border-bottom: 1px solid rgba(8,34,127,.04);
+  position: relative;
+  line-height: 1.5;
+}
+.service-missions li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--blue-mid);
+  font-size: 12px;
+}
+.service-why {
+  font-size: 13px;
+  color: var(--blue-deep);
+  font-weight: 500;
+  font-style: italic;
+  padding-top: 12px;
+  border-top: 1px solid rgba(8,34,127,.06);
+  line-height: 1.6;
+}
+
+/* ===================== BENIN PAGE ===================== */
+.benin-page-hero {
+  height: 70vh;
+  min-height: 500px;
+  background: linear-gradient(135deg, #0a1a3a, #08227f);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.benin-page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ccircle cx='60' cy='60' r='28' fill='none' stroke='white' stroke-width='1' stroke-opacity='.07'/%3E%3Ccircle cx='60' cy='60' r='14' fill='none' stroke='%23c9a84c' stroke-width='.8' stroke-opacity='.1'/%3E%3Cline x1='60' y1='32' x2='60' y2='88' stroke='white' stroke-width='.5' stroke-opacity='.06'/%3E%3Cline x1='32' y1='60' x2='88' y2='60' stroke='white' stroke-width='.5' stroke-opacity='.06'/%3E%3C/svg%3E");
+}
+.benin-page-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.benin-sections { padding: 80px 0; }
+.benin-section-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 60px 0;
+  border-bottom: 1px solid rgba(8,34,127,.06);
+}
+.benin-section-item:last-child { border-bottom: none; }
+.benin-section-item.reverse { direction: rtl; }
+.benin-section-item.reverse > * { direction: ltr; }
+
+.benin-section-visual {
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--blue-light);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.benin-section-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='12' fill='none' stroke='%2308227f' stroke-width='.8' stroke-opacity='.08'/%3E%3C/svg%3E");
+}
+.benin-icon-bg {
+  font-size: 80px;
+  opacity: .3;
+}
+.benin-section-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  color: var(--blue-deep);
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.benin-section-text p {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.benin-list {
+  list-style: none;
+  margin-top: 8px;
+}
+.benin-list li {
+  font-size: 14px;
+  color: var(--ink-soft);
+  padding: 7px 0 7px 24px;
+  border-bottom: 1px solid rgba(8,34,127,.04);
+  position: relative;
+}
+.benin-list li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 8px;
+  top: 10px;
+}
+
+/* ===================== CONTACT PAGE ===================== */
+.contact-page {
+  padding: 80px 0 100px;
+  background: var(--off-white);
+  position: relative;
+}
+.contact-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 60px;
+}
+.contact-info h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--blue-deep);
+  margin-bottom: 32px;
+}
+.contact-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+  align-items: flex-start;
+}
+.contact-item-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--blue-deep);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  color: white;
+}
+.contact-item-text { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+.contact-item-text strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 2px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+
+.contact-socials { margin-top: 40px; }
+.contact-socials h4 {
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+.social-links { display: flex; gap: 12px; }
+.social-link {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(8,34,127,.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-deep);
+  text-decoration: none;
+  font-size: 16px;
+  transition: .2s;
+}
+.social-link:hover { background: var(--blue-deep); color: white; border-color: var(--blue-deep); }
+
+.contact-form-wrap {
+  background: var(--white);
+  border: 1px solid rgba(8,34,127,.08);
+  border-radius: 20px;
+  padding: 48px 44px;
+  box-shadow: 0 8px 40px rgba(8,34,127,.06);
+}
+.form-group { margin-bottom: 20px; }
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid rgba(8,34,127,.12);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+  background: var(--off-white);
+  transition: .2s;
+  outline: none;
+  -webkit-appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--blue-deep);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(8,34,127,.06);
+}
+.form-textarea { height: 140px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.btn-form {
+  width: 100%;
+  padding: 15px 28px;
+  background: var(--blue-deep);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .25s;
+  margin-top: 8px;
+  font-family: 'Inter', sans-serif;
+}
+.btn-form:hover { background: #041a60; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(8,34,127,.25); }
+.form-status { margin-top: 12px; padding: 12px 16px; border-radius: 6px; font-size: 13px; display: none; }
+.form-status.success { background: #d1fae5; color: #065f46; display: block; }
+.form-status.error { background: #fee2e2; color: #991b1b; display: block; }
+
+/* ===================== FOOTER ===================== */
+footer {
+  background: #040f2e;
+  position: relative;
+  overflow: hidden;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='16' fill='none' stroke='white' stroke-width='.8' stroke-opacity='.04'/%3E%3Cline x1='40' y1='24' x2='40' y2='56' stroke='white' stroke-width='.4' stroke-opacity='.03'/%3E%3Cline x1='24' y1='40' x2='56' y2='40' stroke='white' stroke-width='.4' stroke-opacity='.03'/%3E%3C/svg%3E");
+}
+.footer-top {
+  position: relative;
+  z-index: 2;
+  padding: 72px 32px 56px;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+  gap: 48px;
+}
+.footer-brand .nav-logo-text strong { color: var(--white); font-size: 22px; }
+.footer-brand .nav-logo-text span { color: var(--gold); }
+.footer-tagline {
+  font-size: 14px;
+  color: rgba(255,255,255,.45);
+  line-height: 1.7;
+  margin-top: 20px;
+  max-width: 260px;
+}
+.footer-gold-line {
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  margin: 20px 0;
+}
+.footer-col h4 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a {
+  font-size: 14px;
+  color: rgba(255,255,255,.5);
+  text-decoration: none;
+  transition: .2s;
+  cursor: pointer;
+}
+.footer-col ul li a:hover { color: var(--white); }
+.footer-contact-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+.footer-contact-item span:first-child { color: var(--gold); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.footer-contact-item span:last-child { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.5; }
+
+.footer-newsletter { margin-top: 8px; }
+.footer-newsletter input {
+  width: 100%;
+  padding: 11px 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 6px;
+  color: var(--white);
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  margin-bottom: 10px;
+  transition: .2s;
+}
+.footer-newsletter input::placeholder { color: rgba(255,255,255,.3); }
+.footer-newsletter input:focus { border-color: var(--gold); background: rgba(255,255,255,.08); }
+.footer-newsletter button {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--gold);
+  color: #040f2e;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: .2s;
+}
+.footer-newsletter button:hover { background: var(--gold-light); }
+
+.footer-bottom {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(201,168,76,.1);
+  padding: 20px 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-bottom p { font-size: 12px; color: rgba(255,255,255,.3); }
+.footer-social-row { display: flex; gap: 10px; }
+.footer-social-row a {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.4);
+  text-decoration: none;
+  font-size: 14px;
+  transition: .2s;
+}
+.footer-social-row a:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ===================== ARTICLES SECTION ===================== */
+.articles-section { padding: 100px 0; background: var(--off-white); position: relative; }
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  margin-top: 56px;
+}
+.article-card {
+  background: var(--white);
+  border: 1px solid rgba(8,34,127,.07);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: .3s;
+  cursor: pointer;
+}
+.article-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(8,34,127,.1); }
+.article-thumb {
+  height: 180px;
+  background: linear-gradient(135deg, var(--blue-light), var(--blue-pale));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  position: relative;
+  overflow: hidden;
+}
+.article-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='12' fill='none' stroke='%2308227f' stroke-width='.8' stroke-opacity='.08'/%3E%3C/svg%3E");
+}
+.article-body { padding: 24px; }
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.article-cat {
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--blue-mid);
+  font-weight: 600;
+}
+.article-date { font-size: 11px; color: rgba(10,26,58,.4); }
+.article-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--blue-deep);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+.article-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+
+/* ===================== TEAM PAGE ===================== */
+.team-section { padding: 100px 0; }
+.team-intro { max-width: 760px; margin: 0 auto; text-align: center; margin-bottom: 72px; }
+
+/* ===================== PAGE HERO GENERIC ===================== */
+.page-hero {
+  background: var(--blue-deep);
+  position: relative;
+  overflow: hidden;
+  padding: 100px 32px 80px;
+  text-align: center;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='22' fill='none' stroke='white' stroke-width='1' stroke-opacity='.06'/%3E%3Ccircle cx='50' cy='50' r='10' fill='none' stroke='%23c9a84c' stroke-width='.8' stroke-opacity='.09'/%3E%3Cline x1='50' y1='28' x2='50' y2='72' stroke='white' stroke-width='.5' stroke-opacity='.06'/%3E%3Cline x1='28' y1='50' x2='72' y2='50' stroke='white' stroke-width='.5' stroke-opacity='.06'/%3E%3C/svg%3E");
+}
+.page-hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+.page-hero .section-eyebrow { justify-content: center; }
+.page-hero .section-title { color: var(--white); }
+.page-hero .section-desc { color: rgba(255,255,255,.7); margin: 0 auto; text-align: center; }
+
+/* ===================== ACTIVE STATES ===================== */
+.nav-links a.active {
+  color: var(--blue-deep);
+  font-weight: 600;
+}
+.nav-links a.active::after { width: 100%; }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  .benin-strip-inner, .about-hero-inner, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .benin-section-item, .benin-section-item.reverse { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .hero-stats-inner { grid-template-columns: 1fr; }
+  .hero-stat { border-right: none; border-bottom: 1px solid rgba(201,168,76,.15); padding: 12px; }
+  .hero-stat:last-child { border-bottom: none; }
+  .footer-top { grid-template-columns: 1fr; gap: 36px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .container { padding: 0 20px; }
+  .contact-form-wrap { padding: 32px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .hero-content { padding: 0 20px; }
+  .page-hero { padding: 80px 20px 60px; }
+}
+@media (max-width: 480px) {
+  .hero-stat-number { font-size: 28px; }
+  .hero h1 { font-size: 36px; }
+}
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim-fadeup { animation: fadeUp .7s ease both; }
+.anim-delay-1 { animation-delay: .1s; }
+.anim-delay-2 { animation-delay: .22s; }
+.anim-delay-3 { animation-delay: .34s; }
+.anim-delay-4 { animation-delay: .46s; }
+
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span>📧 <a href="mailto:contact@bridgepartners.fr">contact@bridgepartners.fr</a></span>
+  <span>📞 <a href="tel:+33617055735">+33 6 17 05 57 35</a></span>
+  <span>🇫🇷 Paris · 🇧🇯 Cotonou (bientôt)</span>
+</div>
+
+<!-- NAVBAR -->
+<div class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" onclick="showPage('home')">
+      <div class="nav-logo-mark"></div>
+      <div class="nav-logo-text">
+        <strong>Bridge Partners</strong>
+        <span>Connecter des ambitions</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Accueil</a></li>
+      <li><a href="#" onclick="showPage('about')" id="nav-about">À propos</a></li>
+      <li><a href="#" onclick="showPage('articles')" id="nav-articles">Articles</a></li>
+      <li><a href="#" onclick="showPage('benin')" id="nav-benin">Découvrir le Bénin</a></li>
+      <li><a href="#" onclick="showPage('team')" id="nav-team">Nos Services</a></li>
+      <li><a href="#" onclick="showPage('contact')" class="nav-cta">Contactez-nous</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="showPage('home');toggleMenu()">Accueil</a>
+    <a href="#" onclick="showPage('about');toggleMenu()">À propos</a>
+    <a href="#" onclick="showPage('articles');toggleMenu()">Articles</a>
+    <a href="#" onclick="showPage('benin');toggleMenu()">Découvrir le Bénin</a>
+    <a href="#" onclick="showPage('team');toggleMenu()">Nos Services</a>
+    <a href="#" onclick="showPage('contact');toggleMenu()">Contactez-nous</a>
+  </div>
+</div>
+
+<!-- ==================== PAGE: HOME ==================== -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-slides">
+      <div class="hero-slide active"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+    </div>
+    <div class="hero-pattern"></div>
+    <div class="hero-deco-line"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow anim-fadeup">Votre partenaire franco-béninois</div>
+      <h1 class="anim-fadeup anim-delay-1">Bridge<br/><em>Partners</em></h1>
+      <p class="hero-sub anim-fadeup anim-delay-2">Créer un pont, connecter des ambitions…</p>
+      <p class="hero-desc anim-fadeup anim-delay-3">
+        Faciliter la création, la domiciliation et la gestion d'entreprises au Bénin pour la diaspora et les investisseurs étrangers.
+      </p>
+      <div class="hero-actions anim-fadeup anim-delay-4">
+        <a href="#" class="btn-primary" onclick="showPage('contact')">
+          Contactez-nous <span>→</span>
+        </a>
+        <a href="#" class="btn-secondary" onclick="showPage('benin')">
+          Découvrir le Bénin
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stats-inner">
+        <div class="hero-stat">
+          <div class="hero-stat-number">3</div>
+          <div class="hero-stat-label">Pôles d'expertise</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">2</div>
+          <div class="hero-stat-label">Continents connectés</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">100%</div>
+          <div class="hero-stat-label">Accompagnement personnalisé</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section pattern-adinkra">
+    <div class="container">
+      <div class="features-header">
+        <div class="section-eyebrow">Ce que nous faisons</div>
+        <h2 class="section-title">Nos <em>piliers</em> de service</h2>
+        <p class="section-desc">Des solutions sur mesure pour vos projets d'investissement et de développement entre la France et le Bénin.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3>Performance</h3>
+          <p>Solutions optimisées pour des résultats exceptionnels, adaptées à vos objectifs spécifiques.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Sécurité</h3>
+          <p>Protection avancée de vos données et confidentialité absolue dans toutes nos démarches.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3>Expertise</h3>
+          <p>Une équipe dédiée à votre succès, avec une connaissance profonde des marchés béninois et français.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>Global</h3>
+          <p>Présence internationale et vision locale — nous connaissons les deux rives du pont.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Analytique</h3>
+          <p>Décisions basées sur des données précises et une analyse rigoureuse du marché.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENIN STRIP -->
+  <section class="benin-strip">
+    <div class="benin-strip-pattern"></div>
+    <div class="container">
+      <div class="benin-strip-inner">
+        <div>
+          <div class="section-eyebrow" style="color: var(--gold-light);">Terre d'opportunités</div>
+          <h2 class="section-title" style="color: white;">Le Bénin, <em style="color: var(--gold-light);">une nation en mouvement</em></h2>
+          <p class="section-desc">Réformes structurelles, digitalisation des services publics, stabilité politique, croissance soutenue (+6,4%) : le Bénin 2.0 est l'un des pays les plus attractifs d'Afrique de l'Ouest.</p>
+          <div style="margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="#" class="btn-primary" onclick="showPage('benin')">Découvrir le Bénin →</a>
+          </div>
+        </div>
+        <div class="benin-image-grid">
+          <div class="benin-img-wrap benin-placeholder">🇧🇯</div>
+          <div class="benin-img-wrap benin-placeholder">🌊</div>
+          <div class="benin-img-wrap benin-placeholder">🏛️</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES PREVIEW -->
+  <section class="articles-section">
+    <div class="container">
+      <div class="section-eyebrow">Ressources</div>
+      <h2 class="section-title">Derniers <em>articles</em></h2>
+      <div class="articles-grid">
+        <div class="article-card" onclick="showPage('articles')">
+          <div class="article-thumb">📰</div>
+          <div class="article-body">
+            <div class="article-meta">
+              <span class="article-cat">Analyse</span>
+              <span class="article-date">15 Oct 2025</span>
+            </div>
+            <h3>Les nouvelles tendances du marché</h3>
+            <p>Découvrez les dernières évolutions qui transforment notre secteur et les opportunités qui en découlent.</p>
+          </div>
+        </div>
+        <div class="article-card" onclick="showPage('articles')">
+          <div class="article-thumb">💡</div>
+          <div class="article-body">
+            <div class="article-meta">
+              <span class="article-cat">Technologie</span>
+              <span class="article-date">12 Oct 2025</span>
+            </div>
+            <h3>Innovation et technologie</h3>
+            <p>Comment les nouvelles technologies redéfinissent nos standards et ouvrent de nouvelles perspectives.</p>
+          </div>
+        </div>
+        <div class="article-card" onclick="showPage('articles')">
+          <div class="article-thumb">🔭</div>
+          <div class="article-body">
+            <div class="article-meta">
+              <span class="article-cat">Stratégie</span>
+              <span class="article-date">08 Oct 2025</span>
+            </div>
+            <h3>Perspectives futures</h3>
+            <p>Anticiper les changements pour mieux se préparer et saisir les opportunités de demain.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section dark pattern-bogolan">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="section-eyebrow" style="justify-content:center; color: var(--gold-light);">Passez à l'action</div>
+        <h2 class="section-title" style="color: white; margin-bottom: 20px;">Prêt à <em style="color: var(--gold-light);">commencer</em> ?</h2>
+        <p>Contactez-nous dès aujourd'hui pour donner vie à votre projet d'investissement au Bénin ou de développement numérique.</p>
+        <div class="cta-actions">
+          <a href="#" class="btn-primary" onclick="showPage('contact')">Contactez-nous →</a>
+          <a href="#" class="btn-secondary" onclick="showPage('benin')">Découvrir le Bénin</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="nav-logo-mark"></div>
+          <div class="nav-logo-text">
+            <strong>Bridge Partners</strong>
+            <span>Connecter des ambitions</span>
+          </div>
+        </div>
+        <div class="footer-gold-line"></div>
+        <p class="footer-tagline">Faciliter la création, la domiciliation et la gestion d'entreprises au Bénin pour la diaspora et les investisseurs étrangers.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a onclick="showPage('home')">Accueil</a></li>
+          <li><a onclick="showPage('about')">À propos</a></li>
+          <li><a onclick="showPage('articles')">Articles</a></li>
+          <li><a onclick="showPage('benin')">Découvrir le Bénin</a></li>
+          <li><a onclick="showPage('team')">Nos Services</a></li>
+          <li><a onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Coordonnées</h4>
+        <div class="footer-contact-item"><span>📧</span><span>contact@bridgepartners.fr</span></div>
+        <div class="footer-contact-item"><span>📞</span><span>+33 6 17 05 57 35</span></div>
+        <div class="footer-contact-item"><span>📍</span><span>102 Avenue des Champs-Élysées, 75008 Paris 🇫🇷</span></div>
+        <div class="footer-contact-item"><span>📍</span><span>Cotonou – Sèmè City 🇧🇯 (bientôt disponible)</span></div>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p style="font-size: 13px; color: rgba(255,255,255,.45); margin-bottom: 16px; line-height: 1.6;">Abonnez-vous pour recevoir nos actualités exclusives.</p>
+        <div class="footer-newsletter">
+          <input type="email" id="footerEmail" placeholder="Votre adresse e-mail" />
+          <button onclick="subscribeNewsletter()">S'abonner</button>
+          <div id="footerNewsMsg" style="margin-top: 8px; font-size: 12px; color: var(--gold-light); display: none;"></div>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1280px; margin: 0 auto; height: 1px; background: rgba(201,168,76,.1);"></div>
+    <div class="footer-bottom">
+      <p>© 2025 Bridge Partners. Tous droits réservés.</p>
+      <div class="footer-social-row">
+        <a href="#" title="LinkedIn">in</a>
+        <a href="#" title="Instagram">📸</a>
+        <a href="#" title="Facebook">f</a>
+        <a href="#" title="TikTok">♪</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ==================== PAGE: ABOUT ==================== -->
+<div class="page" id="page-about">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-eyebrow">Notre identité</div>
+      <h1 class="section-title">À propos de <em>Bridge Partners</em></h1>
+      <p class="section-desc">Un pont entre deux mondes, une ambition : simplifier votre accès aux opportunités béninoises.</p>
+    </div>
+  </div>
+
+  <section style="padding: 80px 0; background: var(--white); position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0;" class="pattern-adinkra"></div>
+    <div class="container" style="position: relative; z-index: 2;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+        <div>
+          <div class="section-eyebrow">Notre mission</div>
+          <h2 class="section-title">Créer des <em>ponts</em>, pas des murs</h2>
+          <p class="section-desc" style="max-width: none; margin-bottom: 24px;">Bridge Partners est né d'une conviction simple : trop d'entrepreneurs de la diaspora africaine renoncent à investir dans leur pays d'origine faute d'accompagnement fiable et structuré.</p>
+          <p style="font-size: 15px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 24px;">Nous avons créé Bridge Partners pour être ce partenaire de confiance — entre la France et le Bénin — qui comprend vos besoins des deux côtés de l'Atlantique.</p>
+          <div class="divider-artisan" style="justify-content: flex-start; padding: 24px 0 0;">
+            <div class="divider-artisan-symbol"></div>
+            <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ink-soft); font-size: 16px;">"Parce que chaque ambition mérite un chemin clair"</span>
+          </div>
+        </div>
+        <div style="background: var(--blue-light); border-radius: 20px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-size: 80px; position: relative; overflow: hidden;">
+          <span style="position: relative; z-index: 2;">🤝</span>
+          <div style="position: absolute; inset: 0;" class="pattern-kente"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 80px 0; background: var(--off-white);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 56px;">
+        <div class="section-eyebrow" style="justify-content: center;">Nos valeurs</div>
+        <h2 class="section-title">Ce qui nous <em>guide</em></h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;">
+        <div style="background: var(--white); border-radius: 12px; padding: 36px 28px; border: 1px solid rgba(8,34,127,.07); text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 16px;">🎯</div>
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--blue-deep); margin-bottom: 8px;">Clarté</h3>
+          <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.7;">Des démarches simples, des explications claires, aucun jargon inutile.</p>
+        </div>
+        <div style="background: var(--white); border-radius: 12px; padding: 36px 28px; border: 1px solid rgba(8,34,127,.07); text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 16px;">🤝</div>
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--blue-deep); margin-bottom: 8px;">Confiance</h3>
+          <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.7;">Un partenaire que vous pouvez appeler, qui répond et qui tient ses engagements.</p>
+        </div>
+        <div style="background: var(--white); border-radius: 12px; padding: 36px 28px; border: 1px solid rgba(8,34,127,.07); text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 16px;">🌱</div>
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--blue-deep); margin-bottom: 8px;">Impact</h3>
+          <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.7;">Favoriser une mobilité choisie, éthique et durable, au bénéfice de tous.</p>
+        </div>
+        <div style="background: var(--white); border-radius: 12px; padding: 36px 28px; border: 1px solid rgba(8,34,127,.07); text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 16px;">💡</div>
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--blue-deep); margin-bottom: 8px;">Innovation</h3>
+          <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.7;">Des solutions adaptées au monde d'aujourd'hui, pas à celui d'hier.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section dark">
+    <div class="container">
+      <div class="cta-inner">
+        <h2 class="section-title" style="color: white;">Travaillons <em style="color: var(--gold-light);">ensemble</em></h2>
+        <p>Du lancement de votre entreprise à sa croissance digitale, en passant par la gestion des talents : Bridge Partners connecte ambitions et succès.</p>
+        <div class="cta-actions">
+          <a href="#" class="btn-primary" onclick="showPage('contact')">Contactez-nous →</a>
+          <a href="#" class="btn-secondary" onclick="showPage('team')">Voir nos services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo"><div class="nav-logo-mark"></div><div class="nav-logo-text"><strong>Bridge Partners</strong><span>Connecter des ambitions</span></div></div>
+        <div class="footer-gold-line"></div>
+        <p class="footer-tagline">Faciliter la création, la domiciliation et la gestion d'entreprises au Bénin pour la diaspora et les investisseurs étrangers.</p>
+      </div>
+      <div class="footer-col"><h4>Navigation</h4><ul>
+        <li><a onclick="showPage('home')">Accueil</a></li><li><a onclick="showPage('about')">À propos</a></li>
+        <li><a onclick="showPage('articles')">Articles</a></li><li><a onclick="showPage('benin')">Découvrir le Bénin</a></li>
+        <li><a onclick="showPage('team')">Nos Services</a></li><li><a onclick="showPage('contact')">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Coordonnées</h4>
+        <div class="footer-contact-item"><span>📧</span><span>contact@bridgepartners.fr</span></div>
+        <div class="footer-contact-item"><span>📞</span><span>+33 6 17 05 57 35</span></div>
+        <div class="footer-contact-item"><span>📍</span><span>102 Av. des Champs-Élysées, Paris 🇫🇷</span></div>
+        <div class="footer-contact-item"><span>📍</span><span>Cotonou – Sèmè City 🇧🇯 (bientôt)</span></div>
+      </div>
+      <div class="footer-col"><h4>Newsletter</h4>
+        <p style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:16px;line-height:1.6;">Abonnez-vous pour recevoir nos actualités exclusives.</p>
+        <div class="footer-newsletter"><input type="email" placeholder="Votre adresse e-mail" /><button>S'abonner</button></div>
+      </div>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;height:1px;background:rgba(201,168,76,.1);"></div>
+    <div class="footer-bottom"><p>© 2025 Bridge Partners. Tous droits réservés.</p><div class="footer-social-row"><a href="#">in</a><a href="#">📸</a><a href="#">f</a><a href="#">♪</a></div></div>
+  </footer>
+</div>
+
+<!-- ==================== PAGE: BENIN ==================== -->
+<div class="page" id="page-benin">
+  <section class="benin-page-hero">
+    <div class="benin-page-hero-content">
+      <div class="hero-eyebrow">Terre d'Afrique de l'Ouest</div>
+      <h1 style="font-family:'Cormorant Garamond',serif; font-size:clamp(40px,7vw,80px); font-weight:700; color:white; line-height:1.05; margin-bottom:12px;">Bénin 2.0 : <em style="color:var(--gold-light); font-style:italic;">une nation en mouvement</em></h1>
+      <p style="font-size:18px; color:rgba(255,255,255,.75); max-width:560px; line-height:1.75; margin-bottom:32px; font-weight:300;">Terre d'opportunités, d'innovation et de développement durable.</p>
+      <a href="#benin-sections" class="btn-primary">Découvrir ↓</a>
+    </div>
+  </section>
+
+  <div id="benin-sections" class="benin-sections pattern-kente">
+    <div class="container">
+
+      <div class="benin-section-item">
+        <div class="benin-section-visual"><div class="benin-icon-bg">🌊</div></div>
+        <div class="benin-section-text">
+          <h2>Un pays en pleine <em>transformation</em></h2>
+          <p>Le Bénin vit une profonde mutation économique, technologique et institutionnelle. Réformes structurelles, digitalisation des services publics, stabilit... (truncated due to message length)

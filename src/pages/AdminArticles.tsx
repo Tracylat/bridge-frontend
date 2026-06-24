@@ -169,7 +169,7 @@ export default function AdminArticles() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="site-container p-6">
       <h1 className="text-3xl font-bold mb-6 text-[#08227f]">
         Admin — Gestion des articles
       </h1>

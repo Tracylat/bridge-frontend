@@ -1,58 +1,53 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-fade";
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
-const HeroCarousel = () => {
-  const slides = [
-    {
-      image: "/images/france-1.jpg",
-      title: "Aidons ensemble à changer des vies",
-      subtitle: "Un petit geste peut faire une grande différence.",
-    },
-    {
-      image: "/images/benin-2.jpg",
-      title: "Construisons un avenir meilleur",
-      subtitle: "Chaque don compte, chaque action inspire.",
-    },
-    {
-      image: "/images/benin-1.jpg",
-      title: "Agir pour notre communauté",
-      subtitle: "Parce que le changement commence par chacun de nous.",
-    },
-  ];
+const images = [
+  // France - Paris / Eiffel
+  'https://images.unsplash.com/photo-1529429617335-2a9b4b66b3a6?w=2000&q=80&auto=format&fit=crop',
+  // France - modern city
+  'https://images.unsplash.com/photo-1505765053382-9f3f09d2f2c9?w=2000&q=80&auto=format&fit=crop',
+  // Benin - Ganvie / lagoon
+  'https://images.unsplash.com/photo-1566401233439-7a4a2b197d0e?w=2000&q=80&auto=format&fit=crop',
+  // Benin - culture / mask
+  'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=2000&q=80&auto=format&fit=crop'
+];
+
+const DISPLAY_MS = 5500;
+const FADE_MS = 900;
+
+const HeroCarousel: React.FC = () => {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIndex((i) => (i + 1) % images.length), DISPLAY_MS);
+    return () => clearInterval(t);
+  }, []);
 
   return (
-    <div className="relative w-full h-[90vh]">
-      <Swiper
-        modules={[Autoplay, EffectFade]}
-        effect="fade"
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
-        }}
-        loop={true}
-        className="w-full h-full"
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <div
-              className="w-full h-full bg-cover bg-center flex flex-col justify-center items-center text-white"
-              style={{
-                backgroundImage: `url(${slide.image})`,
-              }}
-            >
-              <div className="bg-black bg-opacity-50 p-8 rounded-xl text-center">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                  {slide.title}
-                </h1>
-                <p className="text-lg md:text-xl">{slide.subtitle}</p>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+    <section className="relative w-full h-[78vh] md:h-[86vh] adenka-hero">
+      {images.map((src, i) => (
+        <motion.div
+          key={i}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${src})` }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: i === index ? 1 : 0 }}
+          transition={{ duration: FADE_MS / 1000 }}
+        />
+      ))}
+
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-transparent" />
+
+      <div className="relative z-20 hero-inner flex items-center h-full">
+        <div className="text-white max-w-3xl">
+          <h1 className="hero-title-large font-extrabold mb-3">Bridge Partners — Connecter la diaspora et l'innovation</h1>
+          <p className="text-lg md:text-xl text-white/90 mb-6">Accompagnement, domiciliation et création d'entreprises entre la France et le Bénin.</p>
+          <div className="flex gap-3">
+            <a href="/contact" className="adenka-cta">Contactez-nous</a>
+            <a href="/articles" className="inline-flex items-center px-5 py-3 rounded-md bg-white/10 border border-white/20 text-white hover:bg-white/20 transition">Voir les articles</a>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

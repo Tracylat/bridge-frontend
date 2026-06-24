@@ -86,15 +86,15 @@ export default function ArticlePage() {
           )}
         </div>
         <div className="absolute inset-0 flex items-end">
-          <div className="max-w-4xl mx-auto p-6 lg:p-12 text-white">
-            <h1 className="display-title text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight drop-shadow-md accent-underline">{article.title}</h1>
+          <div className="site-container p-6 lg:p-12 text-white">
+            <h1 className="hero-title-large font-extrabold leading-tight tracking-tight drop-shadow-md">{article.title}</h1>
             <div className="mt-3 text-sm md:text-base text-gray-100/90">{date} • Bridge Partners</div>
           </div>
         </div>
       </header>
 
       {/* Article content + related */}
-      <main className="flex-1 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <main className="site-container py-12 flex-1 grid grid-cols-1 lg:grid-cols-3 gap-8">
         <article className="prose lg:prose-xl prose-lg max-w-none text-gray-800 lg:col-span-2">
           {article.description && <p className="text-gray-700 text-lg md:text-xl mb-6 font-medium leading-relaxed">{article.description}</p>}
           <div ref={contentRef} className="text-gray-800" dangerouslySetInnerHTML={{ __html: article.content }} />

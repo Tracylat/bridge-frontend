@@ -1,177 +1,144 @@
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { FileText, Globe, Users, ArrowRight } from 'lucide-react';
-import Footer from '../components/Footer';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { FileText, Lightbulb, Users, ArrowRight } from "lucide-react";
+import Footer from "../components/Footer";
+import { IMGS } from "../assets/images";
 
-const sliderImages = [
-  'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&h=600&fit=crop',
-];
+const headerSlides = [IMGS.louvre, IMGS.amazone, IMGS.egungunDanse];
 
 const services = [
   {
-    num: '01.',
+    icon: <FileText className="h-8 w-8 text-[#08227f]" />,
     title: "Pôle Création d'Entreprise",
-    icon: <FileText className="h-6 w-6" />,
     intro: "Créer une entreprise ne devrait pas être un parcours du combattant. Le pôle Création d'entreprise de Bridge Partners a été pensé pour simplifier les démarches, structurer votre vision et sécuriser votre lancement.",
     missions: [
-      "Évaluer et valider votre idée d'entreprise à travers une étude de faisabilité",
+      "Évaluer et valider votre idée via une étude de faisabilité",
       "Rédiger un business plan clair, précis et convaincant",
-      "Accompagner dans le choix du statut juridique le plus adapté",
-      "Gérer les formalités administratives (RCCM, IFU, publication GUFE, carte professionnelle)",
+      "Accompagner dans le choix du statut juridique",
+      "Gérer les formalités administratives (RCCM, IFU, GUFE, carte professionnelle)",
       "Assurer la domiciliation de votre entreprise",
       "Aider à l'ouverture de votre compte bancaire professionnel",
     ],
-    why: "Parce que nous vous offrons plus qu'un accompagnement administratif : un partenaire stratégique qui comprend vos besoins, anticipe vos blocages et vous guide jusqu'à la réussite.",
+    why: "Parce que nous vous offrons plus qu'un accompagnement administratif : un partenaire stratégique qui vous guide avec clarté jusqu'à la réussite.",
   },
   {
-    num: '02.',
-    title: 'Pôle Rayonnement Numérique & Rédaction de Contenus',
-    icon: <Globe className="h-6 w-6" />,
+    icon: <Lightbulb className="h-8 w-8 text-[#08227f]" />,
+    title: "Pôle Rayonnement Numérique & Contenus",
     intro: "À l'ère du digital, la visibilité est la nouvelle monnaie. Bridge Partners met la stratégie de contenu et le référencement (SEO) au cœur de votre croissance.",
     missions: [
-      "Rédaction de contenus : articles, livres blancs, pages de vente, fiches produits, newsletters",
+      "Rédaction de contenus : articles, livres blancs, pages de vente, newsletters",
       "SEO et netlinking pour améliorer votre position sur Google",
       "Cocon sémantique & optimisation web pour convertir vos visiteurs",
       "Communication stratégique : Google Discover, Wikipédia, e-books, storytelling",
-      "Marketing relationnel : emailings, newsletters, campagnes de fidélisation",
+      "Marketing relationnel : emailings, campagnes de fidélisation et de prospection",
     ],
     why: "Parce que dans un monde numérique saturé, votre contenu est votre voix. Bridge Partners transforme votre expertise en impact digital mesurable.",
   },
   {
-    num: '03.',
-    title: 'Pôle Recrutement International',
-    icon: <Users className="h-6 w-6" />,
-    intro: "Le capital humain est la première richesse d'une entreprise. Avec notre pôle Recrutement international, Bridge Partners facilite la mise en relation entre talents béninois et entreprises françaises ou internationales.",
+    icon: <Users className="h-8 w-8 text-[#08227f]" />,
+    title: "Pôle Recrutement International",
+    intro: "Le capital humain est la première richesse d'une entreprise. Bridge Partners facilite la mise en relation entre talents béninois et entreprises françaises ou internationales.",
     missions: [
       "Mise en relation directe entre candidats et entreprises partenaires",
-      "Accompagnement personnalisé des candidats (entretiens, CV, lettres de motivation)",
+      "Accompagnement personnalisé des candidats (CV, lettres de motivation, entretiens)",
       "Soutien administratif pour la mobilité internationale (Campus France, visa travail)",
-      "Conseil RH pour les entreprises : intégration, onboarding, gestion des talents",
+      "Conseil RH pour les entreprises : intégration, onboarding, gestion à distance",
     ],
-    why: "Parce qu'il ne s'agit pas seulement de recruter, mais de connecter des potentiels à des projets de vie. Bridge Partners favorise une mobilité choisie, éthique et durable.",
+    why: "Parce qu'il ne s'agit pas seulement de recruter, mais de connecter des potentiels à des projets de vie — une mobilité choisie, éthique et durable.",
   },
 ];
 
-const Services = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
+const Team = () => {
+  const [slide, setSlide] = useState(0);
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
+    const t = setInterval(() => setSlide(s => (s + 1) % headerSlides.length), 5000);
+    return () => clearInterval(t);
   }, []);
 
   return (
-    <div style={{ fontFamily: "'Inter', sans-serif", background: '#F8F2E6', color: '#2C1A08' }}>
-      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-
-      {/* Hero Slider */}
-      <section style={{ position: 'relative', height: '70vh', overflow: 'hidden' }}>
-        {sliderImages.map((img, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: index === currentSlide ? 1 : 0 }}
-            transition={{ duration: 1 }}
-            style={{ position: 'absolute', inset: 0 }}
-          >
-            <img src={img} alt={`Slide ${index + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </motion.div>
+    <div className="min-h-screen bg-[#fafbff]">
+      {/* ── Hero ── */}
+      <section className="relative h-[65vh] overflow-hidden">
+        {headerSlides.map((src, i) => (
+          <div key={i} className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+            style={{ backgroundImage: `url(${src})`, opacity: i === slide ? 1 : 0 }} />
         ))}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, rgba(28,14,4,0.85) 0%, rgba(44,26,8,0.6) 100%)' }} />
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 3rem' }}>
-          <div style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C07A3A', borderTop: '1px solid #C07A3A', paddingTop: '6px', marginBottom: '1.5rem', display: 'inline-block' }}>
-            Bridge Partners
-          </div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 400, color: '#F8F2E6', lineHeight: 1.2, maxWidth: '560px', marginBottom: '1rem' }}
-          >
-            Nos <em style={{ fontStyle: 'italic', color: '#C07A3A' }}>services</em>
+        <div className="absolute inset-0 bp-hero-pattern z-[1]" />
+        <div className="absolute inset-0 bg-[#08227f]/60 z-[2]" />
+        <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center text-center px-6">
+          <motion.p initial={{opacity:0}} animate={{opacity:1}} className="bp-eyebrow text-[#f0d896] justify-center flex mb-4">
+            Ce que nous faisons
+          </motion.p>
+          <motion.h1 initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:.1}}
+            className="bp-serif text-white font-bold leading-tight"
+            style={{fontSize:"clamp(32px,6vw,68px)"}}>
+            Nos <em className="italic font-normal text-[#f0d896]">Services</em>
           </motion.h1>
-          <p style={{ color: '#C9A96A', maxWidth: '440px', fontSize: '15px', lineHeight: 1.8, marginBottom: '2rem' }}>
+          <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{delay:.25}}
+            className="text-white/70 text-[16px] font-light max-w-lg mt-3">
             Chaque pôle de Bridge Partners agit pour simplifier, valoriser et développer vos projets.
-          </p>
-          <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', background: '#C07A3A', color: '#FDFAF3', padding: '0.8rem 2rem', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 500, textDecoration: 'none' }}>
-            Contactez-nous <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
+          </motion.p>
         </div>
       </section>
 
-      {/* Band */}
-      <div style={{ background: '#C07A3A', padding: '1.25rem 2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2rem' }}>
-        <span style={{ color: 'rgba(253,250,243,0.35)', fontSize: '20px' }}>✦</span>
-        <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '15px', fontStyle: 'italic', color: '#FDFAF3', letterSpacing: '0.04em' }}>
-          Un partenaire stratégique, du lancement à la croissance
-        </p>
-        <span style={{ color: 'rgba(253,250,243,0.35)', fontSize: '20px' }}>✦</span>
-      </div>
+      {/* ── Service cards ── */}
+      <section className="py-20 bp-pattern-kente">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {services.map((s, i) => (
+              <motion.div key={i}
+                initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}}
+                transition={{duration:.55,delay:i*.1}} viewport={{once:true}}
+                className="group bg-white border border-[#08227f]/08 rounded-2xl p-8 relative overflow-hidden
+                           hover:-translate-y-1.5 hover:shadow-2xl transition-all duration-300">
+                {/* Corner deco */}
+                <div className="absolute -top-5 -right-5 w-24 h-24 rounded-full border border-[#08227f]/04" />
+                <div className="absolute -top-2 -right-2 w-12 h-12 rounded-full border border-[#c9a84c]/08" />
+                {/* Bottom bar */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#08227f] to-[#c9a84c]
+                                scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
 
-      {/* Services */}
-      <section style={{ padding: '5rem 2.5rem' }}>
-        <div style={{ maxWidth: '960px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '3rem' }}>
-            <div style={{ width: '32px', height: '2px', background: '#C07A3A', flexShrink: 0 }} />
-            <span style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C07A3A', fontWeight: 500 }}>Nos pôles d'expertise</span>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: 'rgba(192,122,58,0.15)', border: '1px solid rgba(192,122,58,0.15)' }}>
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                style={{ background: '#FDFAF3', padding: '2.5rem' }}
-              >
-                <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-                  <div style={{ flexShrink: 0 }}>
-                    <div style={{ fontSize: '10px', letterSpacing: '0.15em', color: '#C07A3A', fontWeight: 500, marginBottom: '0.75rem' }}>{service.num}</div>
-                    <div style={{ color: '#C07A3A' }}>{service.icon}</div>
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 400, color: '#2C1A08', marginBottom: '1rem', lineHeight: 1.3 }}>
-                      {service.title}
-                    </h3>
-                    <p style={{ fontSize: '14px', color: '#6B4A28', marginBottom: '1.25rem', lineHeight: 1.8 }}>{service.intro}</p>
-                    <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                      {service.missions.map((m, i) => (
-                        <li key={i} style={{ fontSize: '13px', color: '#6B4A28', paddingLeft: '1rem', borderLeft: '2px solid #C07A3A', lineHeight: 1.6 }}>{m}</li>
-                      ))}
-                    </ul>
-                    <p style={{ fontSize: '13px', color: '#7C4A1E', fontStyle: 'italic', lineHeight: 1.7 }}>{service.why}</p>
-                  </div>
+                <div className="w-14 h-14 bg-[#e6ecff] rounded-xl flex items-center justify-center mb-6 relative z-10">
+                  {s.icon}
                 </div>
+                <h3 className="bp-serif text-[#08227f] text-2xl font-bold mb-4 leading-tight">{s.title}</h3>
+                <p className="text-[#3a4a6a] text-[14px] leading-relaxed mb-5">{s.intro}</p>
+                <ul className="space-y-2 mb-5">
+                  {s.missions.map((m, j) => (
+                    <li key={j} className="flex gap-3 text-[13px] text-[#3a4a6a] border-b border-[#08227f]/04 pb-2">
+                      <span className="text-[#1a45b0] mt-0.5 flex-shrink-0">→</span>{m}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-[#08227f] text-[13px] font-medium italic leading-relaxed border-t border-[#08227f]/06 pt-4">
+                  {s.why}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section style={{ background: '#2C1A08', padding: '5rem 2.5rem', textAlign: 'center' }}>
-        <div style={{ maxWidth: '560px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(24px, 3vw, 34px)', fontWeight: 400, color: '#F8F2E6', marginBottom: '1.25rem', lineHeight: 1.3 }}>
-            Une expertise, un objectif : <em style={{ color: '#C07A3A', fontStyle: 'italic' }}>votre réussite</em>
-          </h2>
-          <p style={{ color: '#C9A96A', fontSize: '15px', marginBottom: '2.5rem', lineHeight: 1.8 }}>
-            Du lancement de votre entreprise à sa croissance digitale, Bridge Partners connecte ambitions et succès.
+      {/* ── CTA ── */}
+      <section className="py-20 bg-[#08227f] bp-pattern-bogolan text-center">
+        <div className="max-w-2xl mx-auto px-6">
+          <p className="bp-eyebrow justify-center flex text-[#f0d896] mb-3">Une expertise, un objectif</p>
+          <h2 className="bp-title bp-title-white mb-4">Votre <em>réussite</em></h2>
+          <p className="text-white/65 text-[15px] font-light leading-relaxed mb-8">
+            Du lancement de votre entreprise à sa croissance digitale, en passant par la gestion des talents :
+            Bridge Partners connecte ambitions et succès.
           </p>
-          <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', background: '#C07A3A', color: '#FDFAF3', padding: '0.8rem 2rem', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 500, textDecoration: 'none' }}>
-            Découvrir nos offres <ArrowRight className="ml-2 h-4 w-4" />
+          <Link to="/contact"
+            className="inline-flex items-center gap-2 px-7 py-3 bg-white text-[#08227f] text-sm font-semibold rounded-md
+                       hover:bg-[#f0d896] transition-all duration-200 uppercase tracking-wider">
+            Découvrez nos offres <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>
-
       <Footer />
     </div>
   );
 };
 
-export default Services;
+export default Team;

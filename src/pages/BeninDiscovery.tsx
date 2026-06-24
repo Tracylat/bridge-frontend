@@ -1,216 +1,221 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowDown } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import Footer from "../components/Footer";
+import { IMGS } from "../assets/images";
 
-// Imported images so Vite bundles them correctly regardless of base path
-import beninHero from "../assets/benin-hero.jpg";
-import beninLagune from "../assets/benin-lagune.jpg";
-import beninMonument from "../assets/benin-monument.jpg";
-import beninVillage from "../assets/benin-village.jpg";
-import beninMasque from "../assets/benin-masque.jpg";
-import beninCascade from "../assets/benin-cascade.jpg";
+const headerSlides = [IMGS.amazone, IMGS.ganvie, IMGS.monument];
 
-// Slider images pour l'entête - utilisation des images importées
-const headerSlides = [beninHero, beninLagune, beninMonument];
+interface Section {
+  title: string;
+  content: React.ReactNode;
+  img: string;
+  caption: string;
+  reverse?: boolean;
+}
 
-// Images pour les sections - Images authentiques du Bénin
-const sectionImages = {
-  transformation: beninLagune, // Ganvié / lagune
-  reforms: beninVillage, // Ville / architecture
-  innovation: beninMasque, // Culture / masques
-  sectors: beninCascade, // Nature / cascades
-  discovery: beninHero, // Hero reuse for discovery
-  invest: beninMonument // Monument / porte
-};
+const sections: Section[] = [
+  {
+    title: "Un pays en pleine transformation",
+    img: IMGS.ganvie,
+    caption: "Ganvié – La Venise d'Afrique",
+    content: (
+      <>
+        <p className="text-[#3a4a6a] text-[15px] leading-relaxed mb-4">
+          Le Bénin vit une profonde mutation économique, technologique et institutionnelle.
+          Réformes structurelles, digitalisation des services publics, stabilité politique,
+          croissance soutenue (+6,4 %) : tout concourt à en faire l'un des pays les plus
+          attractifs d'Afrique de l'Ouest.
+        </p>
+        <p className="text-[#3a4a6a] text-[15px] leading-relaxed">
+          Aujourd'hui, le Bénin 2.0, c'est un pays qui avance, s'organise et crée de la valeur
+          pour ses citoyens et pour sa diaspora.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "Des réformes qui facilitent l'investissement",
+    img: IMGS.monument,
+    caption: "Monument des Martyrs, Cotonou",
+    reverse: true,
+    content: (
+      <ul className="space-y-2 text-[#3a4a6a] text-[15px]">
+        {["Délai moyen pour créer une entreprise : 5 jours ouvrables","Procédures entièrement digitalisées via la plateforme GUFE","Encadrement juridique clair et transparent","Paiements et enregistrements en ligne"].map(t=>(
+          <li key={t} className="flex gap-3">
+            <span className="text-[#c9a84c] mt-1 flex-shrink-0">◆</span>{t}
+          </li>
+        ))}
+      </ul>
+    ),
+  },
+  {
+    title: "Les pôles de croissance et d'innovation",
+    img: IMGS.egungunDanse,
+    caption: "Egungun – Culture béninoise",
+    content: (
+      <ul className="space-y-2 text-[#3a4a6a] text-[15px]">
+        {["Sèmè City – campus moderne dédié à la recherche","GDIZ – hub industriel et logistique","Parc Technologique d'Abomey-Calavi","Port de Cotonou modernisé – levier du commerce régional"].map(t=>(
+          <li key={t} className="flex gap-3"><span className="text-[#c9a84c] mt-1 flex-shrink-0">◆</span>{t}</li>
+        ))}
+      </ul>
+    ),
+  },
+  {
+    title: "Secteurs porteurs au Bénin",
+    img: IMGS.archiOrange,
+    caption: "Architecture coloniale, Cotonou",
+    reverse: true,
+    content: (
+      <ul className="space-y-2 text-[#3a4a6a] text-[15px]">
+        {["Agro-industrie et transformation locale","Énergies renouvelables : solaire et biomasse","Immobilier et construction","Technologies numériques : startups, fintech","Éducation et formation","Tourisme et culture"].map(t=>(
+          <li key={t} className="flex gap-3"><span className="text-[#c9a84c] mt-1 flex-shrink-0">◆</span>{t}</li>
+        ))}
+      </ul>
+    ),
+  },
+  {
+    title: "Le Bénin, un joyau à découvrir",
+    img: IMGS.ouidahSign,
+    caption: "Cité historique de Ouidah",
+    content: (
+      <ul className="space-y-2 text-[#3a4a6a] text-[15px]">
+        {["Cotonou – capitale économique vibrante","Abomey – cité royale, patrimoine UNESCO","Ganvié – la « Venise d'Afrique »","La Pendjari – réserve naturelle emblématique","Porto-Novo – capitale culturelle","Ouidah – mémoire de l'histoire atlantique"].map(t=>(
+          <li key={t} className="flex gap-3"><span className="text-[#c9a84c] mt-1 flex-shrink-0">◆</span>{t}</li>
+        ))}
+      </ul>
+    ),
+  },
+  {
+    title: "Pourquoi investir avec Bridge Partners ?",
+    img: IMGS.porteNonRetour,
+    caption: "Porte du Non-Retour, Ouidah",
+    reverse: true,
+    content: (
+      <>
+        <ul className="space-y-2 text-[#3a4a6a] text-[15px] mb-4">
+          {["Étude d'opportunités et business plan","Conseil juridique et fiscal","Création et domiciliation d'entreprise","Mise en relation avec acteurs économiques","Stratégies d'implantation et de croissance"].map(t=>(
+            <li key={t} className="flex gap-3"><span className="text-[#c9a84c] mt-1 flex-shrink-0">◆</span>{t}</li>
+          ))}
+        </ul>
+        <p className="text-[#3a4a6a] text-[15px] leading-relaxed">
+          Avec Bridge Partners, vous investissez dans un Bénin structuré, compétitif et tourné vers l'avenir.
+        </p>
+      </>
+    ),
+  },
+];
 
-const Benin2 = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+const BeninDiscovery = () => {
+  const [slide, setSlide] = useState(0);
 
-  // Auto-slide toutes les 5 secondes
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % headerSlides.length);
-    }, 5000);
-    return () => clearInterval(interval);
+    const t = setInterval(() => setSlide(s => (s + 1) % headerSlides.length), 5000);
+    return () => clearInterval(t);
   }, []);
 
-  const primaryBlue = "#0D4F8B"; // Couleur proche du logo
-
   return (
-    <div className="min-h-screen site-bg">
-      {/* Header */}
-      <section className="relative h-[90vh] w-full bridge-hero benin-texture">
-        <div
-          className="absolute top-0 left-0 w-full h-full transition-opacity duration-1000"
-          style={{
-            backgroundImage: `url(${headerSlides[currentSlide]})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        ></div>
-        <div className="absolute inset-0 z-20" style={{ background: 'linear-gradient(180deg, rgba(217,130,43,0.8), rgba(13,79,139,0.6))' }}></div>
-        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-4">
-          <h1 className="display-title text-4xl md:text-6xl font-bold text-white mb-4">
-            Bénin 2.0 : Une nation en mouvement
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl">
-            Terre d’opportunités, d’innovation et de développement durable.
-          </p>
-          <Link
-            to="#sections"
-            className="inline-flex items-center btn-bridge px-8 py-3 rounded-lg font-medium transition-colors"
-          >
-            Découvrir le Bénin
-            <ArrowDown className="ml-2 h-5 w-5 animate-bounce" />
-          </Link>
+    <div className="min-h-screen bg-[#fafbff]">
+      {/* ── Hero ── */}
+      <section className="relative h-[85vh] overflow-hidden">
+        {headerSlides.map((src, i) => (
+          <div key={i} className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+            style={{ backgroundImage: `url(${src})`, opacity: i === slide ? 1 : 0 }} />
+        ))}
+        <div className="absolute inset-0 bp-hero-pattern z-[1]" />
+        <div className="absolute inset-0 bg-[#08227f]/60 z-[2]" />
+        <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center text-center px-6">
+          <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8}}
+            className="bp-eyebrow text-[#f0d896] justify-center flex mb-4">
+            Terre d'Afrique de l'Ouest
+          </motion.p>
+          <motion.h1 initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:.9,delay:.1}}
+            className="bp-serif text-white font-bold leading-[1.05] mb-4"
+            style={{fontSize:"clamp(36px,6vw,72px)"}}>
+            Bénin 2.0 : <em className="italic font-normal text-[#f0d896]">une nation en mouvement</em>
+          </motion.h1>
+          <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.9,delay:.25}}
+            className="text-white/70 text-[17px] font-light max-w-xl mb-8">
+            Terre d'opportunités, d'innovation et de développement durable.
+          </motion.p>
+          <motion.a href="#sections" initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.9,delay:.4}}
+            className="inline-flex items-center gap-2 px-7 py-3 bg-white text-[#08227f] text-sm font-semibold rounded-md
+                       hover:bg-[#f0d896] transition-all duration-200 uppercase tracking-wider">
+            Découvrir <ArrowDown className="h-4 w-4 animate-bounce" />
+          </motion.a>
         </div>
       </section>
 
-      {/* Sections */}
-      <div id="sections" className="space-y-24">
-
-        {/* Section 1 – Transformation */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
-          <div className="lg:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Un pays en pleine transformation
-            </h2>
-            <p className="text-gray-600 mb-4">
-              Le Bénin vit une profonde mutation économique, technologique et institutionnelle.
-              Réformes structurelles, digitalisation des services publics, stabilité politique, croissance soutenue (+6,4 %) : tout concourt à en faire l’un des pays les plus attractifs d’Afrique de l’Ouest.
-            </p>
-            <p className="text-gray-600">
-              Aujourd’hui, le Bénin 2.0, c’est un pays qui avance, s’organise et crée de la valeur pour ses citoyens et pour sa diaspora.
-            </p>
-          </div>
-          <div className="lg:w-1/2">
-            <img src={sectionImages.transformation} alt="Transformation Bénin - Ganvié / lagune" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96 benin-frame" />
-          </div>
-        </section>
-
-        {/* Section 2 – Réformes */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row-reverse items-center gap-12">
-          <div className="lg:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Des réformes qui facilitent la création et l’investissement
-            </h2>
-            <ul className="list-disc list-inside text-gray-600 space-y-2 mb-4">
-              <li>Délai moyen pour créer une entreprise : 5 jours ouvrables</li>
-              <li>Procédures entièrement digitalisées via la plateforme GUFE</li>
-              <li>Encadrement juridique clair et transparent</li>
-              <li>Paiements et enregistrements en ligne</li>
-            </ul>
-            <p className="text-gray-600">
-              Le pays attire également les investisseurs étrangers par des avantages fiscaux compétitifs, une zone économique spéciale via la GDIZ, et une stabilité monétaire garantie par l’UEMOA.
-            </p>
-          </div>
-          <div className="lg:w-1/2">
-            <img src={sectionImages.reforms} alt="Réformes Bénin - ville et institutions" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96 benin-frame" />
-          </div>
-        </section>
-
-        {/* Section 3 – Innovation */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
-          <div className="lg:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Les pôles de croissance et d’innovation
-            </h2>
-            <ul className="list-disc list-inside text-gray-600 space-y-2 mb-4">
-              <li>Sèmè City – campus moderne dédié à la recherche et l’entrepreneuriat</li>
-              <li>GDIZ – hub industriel et logistique</li>
-              <li>Parc Technologique d’Abomey-Calavi – économie numérique et emploi des jeunes</li>
-              <li>Port de Cotonou modernisé – levier du commerce régional</li>
-            </ul>
-            <p className="text-gray-600">
-              Bridge Partners collabore avec les acteurs institutionnels et privés pour connecter la diaspora aux opportunités béninoises.
-            </p>
-          </div>
-          <div className="lg:w-1/2">
-            <img src={sectionImages.innovation} alt="Innovation et culture - masques traditionnels" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96 benin-frame" />
-          </div>
-        </section>
-
-        {/* Section 4 – Secteurs porteurs */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row-reverse items-center gap-12">
-          <div className="lg:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Secteurs porteurs au Bénin
-            </h2>
-            <ul className="list-disc list-inside text-gray-600 space-y-2">
-              <li>Agro-industrie et transformation locale</li>
-              <li>Énergies renouvelables : solaire et biomasse</li>
-              <li>Immobilier et construction</li>
-              <li>Technologies numériques : startups, fintech, e-commerce</li>
-              <li>Éducation et formation</li>
-              <li>Tourisme et culture</li>
-            </ul>
-          </div>
-          <div className="lg:w-1/2">
-            <img src={sectionImages.sectors} alt="Nature et tourisme - cascades" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96 benin-frame" />
-          </div>
-        </section>
-
-        {/* Section 5 – Découverte */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
-          <div className="lg:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Le Bénin, un joyau à découvrir
-            </h2>
-            <ul className="list-disc list-inside text-gray-600 space-y-2">
-              <li>Cotonou – capitale économique vibrante</li>
-              <li>Abomey – cité royale, patrimoine mondial UNESCO</li>
-              <li>Ganvié – la “Venise d’Afrique”</li>
-              <li>La Pendjari – réserve naturelle emblématique</li>
-              <li>Porto-Novo – capitale culturelle</li>
-            </ul>
-          </div>
-          <div className="lg:w-1/2">
-            <img src={sectionImages.discovery} alt="Découverte Bénin - Ganvié" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96 benin-frame" />
-          </div>
-        </section>
-
-        {/* Section 6 – Investir */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row-reverse items-center gap-12">
-          <div className="lg:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Pourquoi investir au Bénin avec Bridge Partners ?
-            </h2>
-            <ul className="list-disc list-inside text-gray-600 space-y-2 mb-4">
-              <li>Étude d’opportunités et business plan</li>
-              <li>Conseil juridique et fiscal</li>
-              <li>Création et domiciliation d’entreprise</li>
-              <li>Mise en relation avec acteurs économiques et institutionnels</li>
-              <li>Stratégies d’implantation et de croissance</li>
-            </ul>
-            <p className="text-gray-600">
-              Avec Bridge Partners, vous investissez dans un Bénin structuré, compétitif et tourné vers l’avenir.
-            </p>
-          </div>
-          <div className="lg:w-1/2">
-            <img src={sectionImages.invest} alt="Investir au Bénin - monuments et opportunités" loading="lazy" className="rounded-xl shadow-lg object-cover w-full h-64 md:h-96 benin-frame" />
-          </div>
-        </section>
-
-        {/* CTA final */}
-        <section className="py-16 bg-[#0D4F8B] text-white text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Prêt à concrétiser votre projet au Bénin 2.0 ?
-          </h2>
-          <p className="text-xl mb-8">
-            Contactez Bridge Partners pour exploiter les meilleures opportunités du pays.
-          </p>
-          <Link
-            to="/contact"
-            className="bg-white text-[#0D4F8B] px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
-          >
-            Contactez Bridge Partners
-          </Link>
-        </section>
+      {/* ── Sections ── */}
+      <div id="sections" className="max-w-7xl mx-auto px-6 divide-y divide-[#08227f]/06">
+        {sections.map((s, i) => (
+          <motion.div key={i}
+            initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}}
+            transition={{duration:.6,delay:.05}} viewport={{once:true}}
+            className={`py-16 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center ${s.reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
+            {/* Text */}
+            <div>
+              <h2 className="bp-title mb-4" style={{fontSize:"clamp(24px,3vw,38px)"}}>{s.title}</h2>
+              <div className="bp-gold-line mb-5" />
+              {s.content}
+            </div>
+            {/* Image */}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl group h-72 lg:h-96">
+              <img src={s.img} alt={s.caption}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#040f2e]/50 to-transparent" />
+              <p className="absolute bottom-4 left-4 text-white text-xs font-medium tracking-wide opacity-90">{s.caption}</p>
+            </div>
+          </motion.div>
+        ))}
       </div>
+
+      {/* ── Culture gallery ── */}
+      <section className="py-16 bg-[#08227f] relative overflow-hidden">
+        <div className="absolute inset-0 bp-hero-pattern opacity-60" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <p className="bp-eyebrow text-[#f0d896] justify-center flex mb-3">Richesse immatérielle</p>
+            <h2 className="bp-title bp-title-white">L'âme du <em>Bénin</em></h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-64">
+            {[[IMGS.masqueIvoire,"Art royal"],[IMGS.bronze,"Bronzes"],[IMGS.artContemp,"Art contemporain"],[IMGS.femme,"Traditions"]].map(([src,lbl])=>(
+              <div key={lbl} className="relative rounded-xl overflow-hidden group">
+                <img src={src} alt={lbl} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#040f2e]/75 to-transparent" />
+                <p className="absolute bottom-2 left-0 right-0 text-center text-white text-xs font-medium">{lbl}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="py-20 bg-[#08227f] bp-pattern-bogolan text-center">
+        <div className="max-w-2xl mx-auto px-6">
+          <h2 className="bp-title bp-title-white mb-4">Prêt à <em>concrétiser</em> votre projet au Bénin ?</h2>
+          <p className="text-white/65 text-[15px] font-light leading-relaxed mb-8">
+            Contactez Bridge Partners et transformez votre vision en réalité avec un partenaire de confiance.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/contact"
+              className="inline-flex items-center gap-2 px-7 py-3 bg-white text-[#08227f] text-sm font-semibold rounded-md
+                         hover:bg-[#f0d896] transition-all duration-200 uppercase tracking-wider">
+              Contactez-nous <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link to="/team"
+              className="inline-flex items-center gap-2 px-7 py-3 border border-white/40 text-white text-sm font-medium rounded-md
+                         hover:bg-white/10 transition-all duration-200 uppercase tracking-wider">
+              Nos Services
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
 };
 
-export default Benin2;
+export default BeninDiscovery;

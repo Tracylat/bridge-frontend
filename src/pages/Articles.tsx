@@ -5,6 +5,7 @@ import { supabase } from '../lib/supabase';
 import { Article } from '../types/Article';
 import Footer from '../components/Footer';
 import ArticleCard from '../components/ArticleCard';
+import useNews from '../hooks/useNews';
 
 export default function Articles() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -33,43 +34,68 @@ export default function Articles() {
   const featured = articles[0];
   const rest = articles.slice(1);
 
+  const { items: beninItems, loading: beninLoading } = useNews('benin', 2);
+  const { items: franceItems, loading: franceLoading } = useNews('france', 2);
+
   return (
-    <div className="min-h-screen site-bg flex flex-col">
-      {/* Hero / Featured */}
-      <section className="relative">
-        {featured ? (
-          <div className="relative h-[420px] md:h-[520px] bg-gray-100">
-            <img src={featured.image_url || 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1400&h=700&fit=crop'} alt={featured.title} className="w-full h-full object-cover object-center benin-frame" />
-                <div className="absolute inset-0 bridge-hero/80 bg-gradient-to-r from-black/60 via-black/30 to-transparent flex items-center">
-              <div className="max-w-5xl mx-auto px-6 lg:px-12 text-white">
-                <motion.h1 initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight drop-shadow-lg">
-                  {featured.title}
-                </motion.h1>
-                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.2 }} className="mt-4 text-lg md:text-xl text-gray-100/95 max-w-2xl">
-                  {featured.description}
-                </motion.p>
-                <div className="mt-6">
-                  <Link to={`/article/${featured.id}`} className="inline-block btn-bridge">
-                    Lire l'article
-                  </Link>
+    <div id="page-articles" className="page active">
+      <section className="hero small">
+        <div className="hero-content container">
+          <div className="hero-eyebrow">Ressources</div>
+          <h1 className="hero-title">Nos <em>Articles</em></h1>
+          <p className="hero-sub">Analyses, perspectives et actualités pour mieux comprendre les enjeux entre la France et le Bénin.</p>
+        </div>
+      </section>
+
+      <main className="container">
+        {loading ? (
+          <p className="text-center text-gray-600 py-12">Chargement des articles…</p>
+        ) : articles.length === 0 ? (
+          <p className="text-center text-gray-600 py-12">Aucun article disponible pour le moment.</p>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 py-12">
+            <div className="lg:col-span-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div className="card bg-white p-6 rounded-2xl">
+                  <h3 className="text-xl font-semibold mb-4">Actualités — Bénin</h3>
+                  {beninLoading ? (
+                    <p>Chargement…</p>
+                  ) : (
+                    <div className="flex flex-col gap-4">
+                      {beninItems.map((it, idx) => (
+                        <a key={idx} href={it.link} target="_blank" rel="noreferrer" className="flex items-start gap-4 hover:bg-gray-50 p-2 rounded">
+                          {it.thumbnail ? <img src={it.thumbnail} alt="thumb" className="w-20 h-14 object-cover rounded" /> : <div className="w-20 h-14 bg-gray-100 rounded" />}
+                          <div>
+                            <div className="text-sm text-gray-700 font-semibold">{it.title}</div>
+                            <div className="text-xs text-gray-500 mt-1">{it.pubDate ? new Date(it.pubDate).toLocaleDateString('fr-FR') : it.source}</div>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="card bg-white p-6 rounded-2xl">
+                  <h3 className="text-xl font-semibold mb-4">Actualités — France</h3>
+                  {franceLoading ? (
+                    <p>Chargement…</p>
+                  ) : (
+                    <div className="flex flex-col gap-4">
+                      {franceItems.map((it, idx) => (
+                        <a key={idx} href={it.link} target="_blank" rel="noreferrer" className="flex items-start gap-4 hover:bg-gray-50 p-2 rounded">
+                          {it.thumbnail ? <img src={it.thumbnail} alt="thumb" className="w-20 h-14 object-cover rounded" /> : <div className="w-20 h-14 bg-gray-100 rounded" />}
+                          <div>
+                            <div className="text-sm text-gray-700 font-semibold">{it.title}</div>
+                            <div className="text-xs text-gray-500 mt-1">{it.pubDate ? new Date(it.pubDate).toLocaleDateString('fr-FR') : it.source}</div>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <div className="h-48 md:h-64 bg-gradient-to-r from-[#08227f] to-[#1a3bb8] flex items-center justify-center text-white">
-            <h1 className="text-3xl font-bold">Nos Articles</h1>
-          </div>
-        )}
-      </section>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
-        {loading ? (
-          <p className="text-center text-gray-600">Chargement des articles…</p>
-        ) : articles.length === 0 ? (
-          <p className="text-center text-gray-600">Aucun article disponible pour le moment.</p>
-        ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {rest.map((a, i) => (
@@ -79,7 +105,7 @@ export default function Articles() {
             </div>
 
             <aside className="hidden lg:block">
-              <div className="bg-white rounded-2xl p-6 shadow card-bridge-strong">
+              <div className="card bg-white rounded-2xl p-6 shadow">
                 <h4 className="text-lg font-semibold mb-4">Abonnez‑vous</h4>
                 <p className="text-sm text-gray-600">Recevez les dernières nouvelles et articles directement dans votre boîte mail.</p>
                 <div className="mt-4">
@@ -88,7 +114,7 @@ export default function Articles() {
                 </div>
               </div>
 
-              <div className="mt-6 bg-white rounded-2xl p-6 shadow card-bridge-strong">
+              <div className="mt-6 card bg-white rounded-2xl p-6 shadow">
                 <h4 className="text-lg font-semibold mb-3">Articles récents</h4>
                 <div className="flex flex-col gap-3">
                   {articles.slice(0, 5).map((a) => (
@@ -101,7 +127,6 @@ export default function Articles() {
         )}
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

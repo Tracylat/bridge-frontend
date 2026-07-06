@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import bridgeLogo from "../assets/bridge-logo.svg";
+const bridgeLogo = "/images/LOGO-BRIDGE-Blanc-jpeg(1).jpg";
 
 interface NavbarProps {
   user: { role: "admin" | "user"; email: string } | null;
@@ -27,9 +27,10 @@ const Navbar = ({ user, onLogout }: NavbarProps) => {
     <>
       {/* TOPBAR */}
       <div className="bg-[#040f2e] text-white text-xs py-1.5 text-center hidden md:block">
-        <span className="mx-3">📧 <a href="mailto:contact@bridgepartners.fr" className="text-[#f0d896] hover:underline">contact@bridgepartners.fr</a></span>
-        <span className="mx-3">📞 <a href="tel:+33617055735" className="text-[#f0d896] hover:underline">+33 6 17 05 57 35</a></span>
+        <span className="mx-3">📧 <a href="mailto:contact@bridgepartners.fr" className="text-white/90 hover:underline">contact@bridgepartners.fr</a></span>
+        <span className="mx-3">📞 <a href="tel:+33617055735" className="text-white/90 hover:underline">+33 6 17 05 57 35</a></span>
         <span className="mx-3">🇫🇷 Paris · 🇧🇯 Cotonou</span>
+
       </div>
 
       {/* NAVBAR */}

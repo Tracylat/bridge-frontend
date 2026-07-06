@@ -29,41 +29,42 @@ const HeroRotator: React.FC = () => {
 
   useEffect(() => {
     const t = setInterval(() => {
-      setPrev(idx);
       setFading(true);
-      setTimeout(() => { setIdx(i => (i + 1) % heroSlides.length); setFading(false); }, 800);
+      setTimeout(() => {
+        setIdx((i) => (i + 1) % heroSlides.length);
+        setPrev((p) => p); // keep for parity; visual uses fading
+        setFading(false);
+      }, 800);
     }, 5000);
+
     return () => clearInterval(t);
   }, [idx]);
 
   return (
     <section className="relative w-full h-[88vh] lg:h-[92vh] overflow-hidden">
-      {/* prev slide fades out */}
-      <div className="absolute inset-0 bg-cover bg-center transition-opacity duration-[800ms]"
-        style={{ backgroundImage: `url(${heroSlides[prev].img})`, opacity: fading ? 0 : 1 }} />
       {/* current slide */}
       <div className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroSlides[idx].img})` }} />
+        style={{ backgroundImage: `url(${heroSlides[idx].img})`, opacity: fading ? 0 : 1, transition: 'opacity 800ms ease' }} />
 
       {/* Artisan overlay */}
       <div className="absolute inset-0 bp-hero-pattern opacity-100 pointer-events-none z-[1]" />
       {/* Dark gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/65 z-[2]" />
       {/* Right accent */}
-      <div className="absolute right-0 top-0 bottom-0 w-[40%] border-l border-[#c9a84c]/15 z-[3]
+          <div className="absolute right-0 top-0 bottom-0 w-[40%] border-l border-[#1a45b0]/15 z-[3]
                       bg-gradient-to-l from-white/[.02] to-transparent hidden lg:block" />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 h-full flex items-center">
         <div>
           <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8}}
-            className="bp-eyebrow text-[#f0d896] mb-5">
+            className="bp-eyebrow text-[#08227f] mb-5">
             Votre partenaire franco-béninois
           </motion.p>
           <motion.h1 initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:.9,delay:.1}}
             className="bp-serif text-white leading-[1.05] mb-3"
             style={{fontSize:"clamp(42px,8vw,92px)",fontWeight:700,letterSpacing:"-.01em"}}>
-            Bridge<br/><em className="italic font-normal text-[#f0d896]">Partners</em>
+            Bridge<br/><em className="italic font-normal text-white">Partners</em>
           </motion.h1>
           <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.9,delay:.2}}
             className="bp-serif italic text-white/75 mb-4"
@@ -78,7 +79,8 @@ const HeroRotator: React.FC = () => {
             className="flex flex-wrap gap-4">
             <Link to="/contact"
               className="inline-flex items-center gap-2 px-7 py-3 bg-white text-[#08227f] text-sm font-semibold rounded-md
-                         hover:bg-[#f0d896] hover:-translate-y-0.5 hover:shadow-xl transition-all duration-200 uppercase tracking-wider">
+hover:bg-[#8fb0ff] hover:-translate-y-0.5 hover:shadow-xl transition-all duration-200 uppercase tracking-wider">
+
               Contactez-nous <ArrowRight className="h-4 w-4" />
             </Link>
             <Link to="/benin"
@@ -91,11 +93,11 @@ const HeroRotator: React.FC = () => {
       </div>
 
       {/* Stats bar */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#041a60]/85 backdrop-blur-sm border-t border-[#c9a84c]/20">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-3 divide-x divide-[#c9a84c]/15">
+      <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#041a60]/85 backdrop-blur-sm border-t border-[#1a45b0]/20">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-3 divide-x divide-[#1a45b0]/15">
           {[["3","Pôles d'expertise"],["2","Continents connectés"],["100%","Accompagnement personnalisé"]].map(([n,l])=>(
             <div key={l} className="py-4 text-center">
-              <div className="bp-serif text-[#f0d896] text-3xl font-bold leading-none">{n}</div>
+              <div className="bp-serif text-white text-3xl font-bold leading-none">{n}</div>
               <div className="text-white/55 text-[10px] uppercase tracking-[.1em] mt-1">{l}</div>
             </div>
           ))}
@@ -134,11 +136,12 @@ const Diptych: React.FC = () => (
 
         {/* Divider */}
         <div className="bg-[#08227f] flex flex-col items-center justify-center gap-4 relative">
-          <div className="absolute top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-[#c9a84c] to-transparent" />
+          <div className="absolute top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-[#1a45b0] to-transparent" />
           <svg width="44" height="44" viewBox="0 0 44 44" className="relative z-10" fill="none">
             <circle cx="22" cy="22" r="20" stroke="white" strokeWidth="1.2" strokeOpacity=".4"/>
-            <circle cx="22" cy="22" r="10" stroke="#c9a84c" strokeWidth="1" strokeOpacity=".8"/>
-            <circle cx="22" cy="22" r="3.5" fill="#c9a84c" fillOpacity=".9"/>
+            <circle cx="22" cy="22" r="10" stroke="#1a45b0" strokeWidth="1" strokeOpacity=".8"/>
+            <circle cx="22" cy="22" r="3.5" fill="#1a45b0" fillOpacity=".9"/>
+
             <line x1="22" y1="2" x2="22" y2="42" stroke="white" strokeWidth=".7" strokeOpacity=".25"/>
             <line x1="2" y1="22" x2="42" y2="22" stroke="white" strokeWidth=".7" strokeOpacity=".25"/>
           </svg>
@@ -197,7 +200,7 @@ const BeninStrip: React.FC = () => (
     <div className="absolute inset-0 bp-hero-pattern opacity-60" />
     <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div>
-        <p className="bp-eyebrow text-[#f0d896] mb-3">Terre d'opportunités</p>
+        <p className="bp-eyebrow text-[#08227f] mb-3">Terre d'opportunités</p>
         <h2 className="bp-title bp-title-white">Le Bénin, <em>une nation en mouvement</em></h2>
         <div className="bp-gold-line" />
         <p className="text-white/65 text-[15px] font-light leading-relaxed mb-8">
@@ -206,7 +209,7 @@ const BeninStrip: React.FC = () => (
         </p>
         <Link to="/benin"
           className="inline-flex items-center gap-2 px-7 py-3 bg-white text-[#08227f] text-sm font-semibold rounded-md
-                     hover:bg-[#f0d896] transition-all duration-200 uppercase tracking-wider">
+                     hover:bg-[#1a45b0] transition-all duration-200 uppercase tracking-wider">
           Découvrir le Bénin <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
@@ -262,7 +265,7 @@ const CultureStrip: React.FC = () => (
 const CTA: React.FC = () => (
   <section className="py-20 bg-[#08227f] bp-pattern-bogolan text-center">
     <div className="max-w-2xl mx-auto px-6">
-      <p className="bp-eyebrow justify-center flex text-[#f0d896] mb-3">Passez à l'action</p>
+      <p className="bp-eyebrow justify-center flex text-[#08227f] mb-3">Passez à l'action</p>
       <h2 className="bp-title bp-title-white mb-4">Prêt à <em>commencer</em> ?</h2>
       <p className="text-white/65 text-[15px] font-light leading-relaxed mb-8">
         Contactez-nous dès aujourd'hui pour donner vie à votre projet d'investissement au Bénin.
@@ -270,7 +273,8 @@ const CTA: React.FC = () => (
       <div className="flex flex-wrap justify-center gap-4">
         <Link to="/contact"
           className="inline-flex items-center gap-2 px-7 py-3 bg-white text-[#08227f] text-sm font-semibold rounded-md
-                     hover:bg-[#f0d896] transition-all duration-200 uppercase tracking-wider">
+hover:bg-[#8fb0ff] transition-all duration-200 uppercase tracking-wider">
+
           Contactez-nous <ArrowRight className="h-4 w-4" />
         </Link>
         <Link to="/benin"

@@ -127,13 +127,13 @@ const BeninDiscovery = () => {
         <div className="absolute inset-0 bg-[#08227f]/60 z-[2]" />
         <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center text-center px-6">
           <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8}}
-            className="bp-eyebrow text-[#f0d896] justify-center flex mb-4">
+            className="bp-eyebrow text-[#8fb0ff] justify-center flex mb-4">
             Terre d'Afrique de l'Ouest
           </motion.p>
           <motion.h1 initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:.9,delay:.1}}
             className="bp-serif text-white font-bold leading-[1.05] mb-4"
             style={{fontSize:"clamp(36px,6vw,72px)"}}>
-            Bénin 2.0 : <em className="italic font-normal text-[#f0d896]">une nation en mouvement</em>
+              <em className="italic font-normal text-[#8fb0ff]">une nation en mouvement</em>
           </motion.h1>
           <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.9,delay:.25}}
             className="text-white/70 text-[17px] font-light max-w-xl mb-8">

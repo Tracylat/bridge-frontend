@@ -46,13 +46,15 @@ const About = () => {
         <div className="absolute inset-0 bp-hero-pattern z-[1]" />
         <div className="absolute inset-0 bg-[#08227f]/60 z-[2]" />
         <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center text-center px-6">
-          <motion.p initial={{opacity:0}} animate={{opacity:1}} className="bp-eyebrow text-[#f0d896] justify-center flex mb-4">
+          <motion.p initial={{opacity:0}} animate={{opacity:1}} className="bp-eyebrow text-[#8fb0ff] justify-center flex mb-4">
+
             Notre identité
           </motion.p>
           <motion.h1 initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:.1}}
             className="bp-serif text-white font-bold leading-tight mb-3"
             style={{fontSize:"clamp(32px,6vw,68px)"}}>
-            À propos de <em className="italic font-normal text-[#f0d896]">Bridge Partners</em>
+            À propos de <em className="italic font-normal text-[#8fb0ff]">Bridge Partners</em>
+
           </motion.h1>
           <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{delay:.25}}
             className="text-white/70 text-[16px] font-light max-w-lg">

@@ -35,8 +35,13 @@ const Contact = () => {
       <section className="relative py-24 bg-[#08227f] overflow-hidden text-center">
         <div className="absolute inset-0 bp-hero-pattern" />
         <div className="relative z-10 max-w-2xl mx-auto px-6">
-          <p className="bp-eyebrow text-[#f0d896] justify-center flex mb-4">Parlons de votre projet</p>
-          <h1 className="bp-serif text-white font-bold mb-3" style={{fontSize:"clamp(30px,5vw,58px)"}}>
+          <p className="bp-eyebrow text-[#8fb0ff] justify-center flex mb-4">
+            Contactez-nous
+          </p>
+          <h1
+            className="bp-serif text-white font-bold mb-3"
+            style={{ fontSize: "clamp(30px,5vw,58px)" }}
+          >
             <em className="italic font-normal text-[#f0d896]">Contactez</em>-nous
           </h1>
           <p className="text-white/65 text-[15px] font-light leading-relaxed">
@@ -44,6 +49,7 @@ const Contact = () => {
           </p>
         </div>
       </section>
+
 
       {/* ── Main grid ── */}
       <section className="py-16 bp-pattern-adinkra">

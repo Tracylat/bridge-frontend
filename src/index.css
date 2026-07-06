@@ -15,8 +15,9 @@
   --bp-blue-pale:  #f0f4ff;
   --bp-ink:        #0a1a3a;
   --bp-ink-soft:   #3a4a6a;
-  --bp-gold:       #c9a84c;
-  --bp-gold-light: #f0d896;
+  --bp-gold:       #1a45b0;
+  --bp-gold-light: #8fb0ff;
+
   --bp-white:      #ffffff;
   --bp-off-white:  #fafbff;
 }
@@ -40,35 +41,39 @@
 }
 
 /* Section eyebrow */
-.bp-eyebrow {
+.bp-eyebrow { 
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: .22em;
   text-transform: uppercase;
   color: var(--bp-gold);
 }
+
 .bp-eyebrow::before {
   content: '';
   display: inline-block;
-  width: 24px;
+  width: 26px;
   height: 1px;
   background: var(--bp-gold);
 }
 
+
 /* Section title */
 .bp-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(30px, 4vw, 52px);
+  font-size: clamp(32px, 4.3vw, 56px);
   font-weight: 700;
   color: var(--bp-blue);
   line-height: 1.1;
   letter-spacing: -.01em;
 }
+
 .bp-title-white { color: white; }
 .bp-title em { font-style: italic; color: var(--bp-blue-mid); font-weight: 400; }
 .bp-title-white em { color: var(--bp-gold-light); }
+
 
 /* Gold divider line */
 .bp-gold-line { width: 40px; height: 2px; background: var(--bp-gold); margin: 16px 0; }
